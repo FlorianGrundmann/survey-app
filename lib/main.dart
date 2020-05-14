@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:survey_app/features/presentation/pages/question_page.dart';
+
+import 'features/questions/presentation/pages/question_page.dart';
 
 void main() {
   runApp(MyApp());
