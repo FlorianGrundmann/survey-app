@@ -11,6 +11,7 @@ class QuestionPage extends StatefulWidget {
 class _QuestionPageState extends State<QuestionPage> {
   final double paddingWidth = 50;
   final double buttonHeight = 50;
+  final double chevronSize = 40;
 
   final int currentQuestion = 5;
   final int numberQuestions = 10;
@@ -31,7 +32,7 @@ class _QuestionPageState extends State<QuestionPage> {
           ),
           Expanded(
             child: Container(
-              color: Colors.green,
+              //color: Colors.green,
               margin: EdgeInsets.all(paddingWidth),
               child: Column(
                 children: <Widget>[
@@ -66,9 +67,9 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget _buildQuestionText() {
     return Container(
       padding: EdgeInsets.all(paddingWidth),
-      color: Colors.blue,
+      //color: Colors.blue,
       child: Container(
-        color: Colors.cyan,
+        //color: Colors.cyan,
         child: Text(
           'Der Ablauf der Anästhesie sollte besser erläutert werden.',
           style: TextStyle(fontSize: 30),
@@ -80,29 +81,29 @@ class _QuestionPageState extends State<QuestionPage> {
   Widget _buildQuestionButtons() {
     return SizedBox.expand(
       child: Container(
-          color: Colors.red,
+          //color: Colors.red,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              RaisedButton(
-                child: Text('test'),
-                onPressed: () {},
-              ),
-              RaisedButton(
-                child: Text('test'),
-                onPressed: () {},
-              ),
-              RaisedButton(
-                child: Text('test'),
-                onPressed: () {},
-              ),
-              RaisedButton(
-                child: Text('test'),
-                onPressed: () {},
-              ),
-            ],
-          )),
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          RaisedButton(
+            child: Text('test'),
+            onPressed: () {},
+          ),
+          RaisedButton(
+            child: Text('test'),
+            onPressed: () {},
+          ),
+          RaisedButton(
+            child: Text('test'),
+            onPressed: () {},
+          ),
+          RaisedButton(
+            child: Text('test'),
+            onPressed: () {},
+          ),
+        ],
+      )),
     );
   }
 
@@ -113,7 +114,18 @@ class _QuestionPageState extends State<QuestionPage> {
         width: double.infinity,
         height: buttonHeight,
         child: RaisedButton(
-          child: Text('Weiter'),
+          color: Colors.greenAccent,
+          disabledColor: Colors.greenAccent[100],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Row(
+            children: <Widget>[
+              SizedBox(width: chevronSize),
+              Expanded(child: Center(child: Text('Weiter'))),
+              Icon(Icons.chevron_right, size: chevronSize),
+            ],
+          ),
           onPressed: () {},
         ),
       ),
