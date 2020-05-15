@@ -52,28 +52,70 @@ class _QuestionPageState extends State<QuestionPage> {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(paddingWidth),
-              color: Colors.blue,
-              child: Container(color: Colors.cyan),
-            ),
+            child: _buildQuestionText(),
           ),
           Expanded(
             flex: 2,
-            child: Container(color: Colors.red),
+            child: _buildQuestionButtons(),
           ),
         ],
       ),
     );
   }
 
+  Widget _buildQuestionText() {
+    return Container(
+      padding: EdgeInsets.all(paddingWidth),
+      color: Colors.blue,
+      child: Container(
+        color: Colors.cyan,
+        child: Text(
+          'Der Ablauf der Anästhesie sollte besser erläutert werden.',
+          style: TextStyle(fontSize: 30),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQuestionButtons() {
+    return SizedBox.expand(
+      child: Container(
+          color: Colors.red,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              RaisedButton(
+                child: Text('test'),
+                onPressed: () {},
+              ),
+              RaisedButton(
+                child: Text('test'),
+                onPressed: () {},
+              ),
+              RaisedButton(
+                child: Text('test'),
+                onPressed: () {},
+              ),
+              RaisedButton(
+                child: Text('test'),
+                onPressed: () {},
+              ),
+            ],
+          )),
+    );
+  }
+
   Widget _buildNextButton() {
-    return SizedBox(
-      width: double.infinity,
-      height: 50.0,
-      child: RaisedButton(
-        child: Text('Weiter'),
-        onPressed: () {},
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: SizedBox(
+        width: double.infinity,
+        height: buttonHeight,
+        child: RaisedButton(
+          child: Text('Weiter'),
+          onPressed: () {},
+        ),
       ),
     );
   }
