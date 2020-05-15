@@ -14,7 +14,7 @@ class _QuestionPageState extends State<QuestionPage> {
   final double buttonHeight = 70;
   final double chevronSize = 40;
 
-  final int currentQuestion = 5;
+  final int currentQuestion = 2;
   final int numberQuestions = 10;
 
   _QuestionPageState();
@@ -109,7 +109,7 @@ class _QuestionPageState extends State<QuestionPage> {
         child: RaisedButton(
           elevation: 0.0,
           color: Color.fromRGBO(0, 119, 113, 1.0),
-          disabledColor: Colors.greenAccent[100],
+          disabledColor: Colors.lightGreen[200],
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(18.0),
           ),
@@ -120,7 +120,10 @@ class _QuestionPageState extends State<QuestionPage> {
                 child: Center(
                   child: Text(
                     'Weiter',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Color.fromRGBO(175, 205, 97, 1.0),
+                    ),
                   ),
                 ),
               ),
