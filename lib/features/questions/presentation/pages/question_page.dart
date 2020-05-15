@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survey_app/features/questions/presentation/widgets/custom_radio_button.dart';
 import 'package:survey_app/features/questions/presentation/widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -10,7 +11,7 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPageState extends State<QuestionPage> {
   final double paddingWidth = 50;
-  final double buttonHeight = 50;
+  final double buttonHeight = 70;
   final double chevronSize = 40;
 
   final int currentQuestion = 5;
@@ -21,7 +22,7 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: Colors.grey[100],
       padding: EdgeInsets.only(top: paddingWidth),
       child: Column(
         children: <Widget>[
@@ -86,22 +87,14 @@ class _QuestionPageState extends State<QuestionPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          RaisedButton(
-            child: Text('test'),
+          CustomRadioButton(text: 'Trifft nicht zu', onPressed: () {}),
+          CustomRadioButton(text: 'Trifft etwas zu', onPressed: () {}),
+          CustomRadioButton(
+            text: 'Trifft ziemlich zu',
             onPressed: () {},
+            activated: true,
           ),
-          RaisedButton(
-            child: Text('test'),
-            onPressed: () {},
-          ),
-          RaisedButton(
-            child: Text('test'),
-            onPressed: () {},
-          ),
-          RaisedButton(
-            child: Text('test'),
-            onPressed: () {},
-          ),
+          CustomRadioButton(text: 'Triff stark zu', onPressed: () {}),
         ],
       )),
     );
@@ -109,20 +102,28 @@ class _QuestionPageState extends State<QuestionPage> {
 
   Widget _buildNextButton() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
+      padding: const EdgeInsets.only(top: 30),
       child: SizedBox(
         width: double.infinity,
-        height: buttonHeight,
+        height: 70,
         child: RaisedButton(
-          color: Colors.greenAccent,
+          elevation: 0.0,
+          color: Color.fromRGBO(0, 119, 113, 1.0),
           disabledColor: Colors.greenAccent[100],
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(18.0),
           ),
           child: Row(
             children: <Widget>[
               SizedBox(width: chevronSize),
-              Expanded(child: Center(child: Text('Weiter'))),
+              Expanded(
+                child: Center(
+                  child: Text(
+                    'Weiter',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ),
+              ),
               Icon(Icons.chevron_right, size: chevronSize),
             ],
           ),
