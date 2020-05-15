@@ -76,6 +76,9 @@ class TopBar extends StatelessWidget {
       child: Column(
         children: <Widget>[
           LinearProgressIndicator(
+            backgroundColor: Color.fromRGBO(175, 205, 97, 1.0),
+            valueColor:
+                AlwaysStoppedAnimation<Color>(Color.fromRGBO(0, 119, 113, 1.0)),
             value: currentQuestion.toDouble() / numberQuestions.toDouble(),
           ),
         ],
