@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/progress_bar.dart';
+import 'package:survey_app/features/questions/presentation/widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
   QuestionPage({Key key}) : super(key: key);
@@ -10,15 +9,23 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
+  final double paddingWidth;
+
+  final int currentQuestion = 5;
+  final int numberQuestions = 10;
+
+  _QuestionPageState({this.paddingWidth = 50});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white,
-        padding: EdgeInsets.fromLTRB(45.0, 50.0, 45.0, 45.0),
-        child: Column(
-          children: <Widget>[
-            ProgressBar(),
-          ],
-        ));
+      color: Colors.white,
+      padding: EdgeInsets.only(top: paddingWidth),
+      child: TopBar(
+        currentQuestion: currentQuestion,
+        numberQuestions: numberQuestions,
+        onBackButtonTap: () {},
+      ),
+    );
   }
 }
