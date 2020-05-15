@@ -72,8 +72,7 @@ class TopBar extends StatelessWidget {
 
   Widget _buildProgressBar() {
     return Container(
-      padding:
-          EdgeInsets.fromLTRB(paddingWidth, 0.0, paddingWidth, paddingWidth),
+      padding: EdgeInsets.symmetric(horizontal: paddingWidth),
       child: Column(
         children: <Widget>[
           LinearProgressIndicator(
