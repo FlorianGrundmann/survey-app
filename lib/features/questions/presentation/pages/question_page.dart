@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:survey_app/features/questions/presentation/widgets/standard_question.dart';
 
-import '../widgets/answer_radio_group.dart';
 import '../widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -40,57 +40,22 @@ class _QuestionPageState extends State<QuestionPage> {
               margin: EdgeInsets.all(paddingWidth),
               child: Column(
                 children: <Widget>[
-                  _buildQuestion(),
+                  StandardQuestion(
+                    questionText:
+                        'Der Ablauf der Anästhesie sollte besser erläutert werden.',
+                    answerSelectedValue: _answerSelected,
+                    onAnswerSelected: (value) {
+                      setState(() {
+                        _answerSelected = value;
+                      });
+                    },
+                  ),
                   _buildNextButton(),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildQuestion() {
-    return Expanded(
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: _buildQuestionText(),
-          ),
-          Expanded(
-            flex: 2,
-            child: _buildQuestionButtons(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildQuestionText() {
-    return Container(
-      padding: EdgeInsets.all(paddingWidth),
-      //color: Colors.blue,
-      child: Container(
-        //color: Colors.cyan,
-        child: Text(
-          'Der Ablauf der Anästhesie sollte besser erläutert werden.',
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildQuestionButtons() {
-    return SizedBox.expand(
-      child: AnswerRadioGroup(
-        onChange: (value) {
-          setState(() {
-            _answerSelected = value;
-          });
-        },
-        answerSelected: _answerSelected,
       ),
     );
   }
