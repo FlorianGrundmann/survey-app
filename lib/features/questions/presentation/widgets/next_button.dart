@@ -21,11 +21,6 @@ class NextButton extends StatelessWidget {
         height: 70,
         child: RaisedButton(
           elevation: 0.0,
-          color: Color.fromRGBO(0, 119, 113, 1.0),
-          disabledColor: Colors.lightGreen[200],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
-          ),
           child: Row(
             children: <Widget>[
               SizedBox(width: chevronSize),
@@ -33,10 +28,7 @@ class NextButton extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Weiter',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Color.fromRGBO(175, 205, 97, 1.0),
-                    ),
+                    style: Theme.of(context).textTheme.button,
                   ),
                 ),
               ),

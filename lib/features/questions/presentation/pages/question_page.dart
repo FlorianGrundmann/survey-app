@@ -26,7 +26,6 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[100],
       padding: EdgeInsets.only(top: paddingWidth),
       child: Column(
         children: <Widget>[
@@ -37,7 +36,6 @@ class _QuestionPageState extends State<QuestionPage> {
           ),
           Expanded(
             child: Container(
-              //color: Colors.green,
               margin: EdgeInsets.all(paddingWidth),
               child: Column(
                 children: <Widget>[

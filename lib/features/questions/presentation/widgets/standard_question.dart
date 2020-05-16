@@ -23,7 +23,7 @@ class StandardQuestion extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 1,
-            child: _buildQuestionText(),
+            child: _buildQuestionText(context),
           ),
           Expanded(
             flex: 2,
@@ -34,15 +34,13 @@ class StandardQuestion extends StatelessWidget {
     );
   }
 
-  Widget _buildQuestionText() {
+  Widget _buildQuestionText(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(paddingWidth),
-      //color: Colors.blue,
       child: Container(
-        //color: Colors.cyan,
         child: Text(
           questionText,
-          style: TextStyle(fontSize: 30),
+          style: Theme.of(context).textTheme.headline1,
         ),
       ),
     );

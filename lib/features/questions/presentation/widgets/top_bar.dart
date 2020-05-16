@@ -27,7 +27,7 @@ class TopBar extends StatelessWidget {
             children: <Widget>[
               _buildBackButton(),
               Expanded(
-                child: _buildCounter(),
+                child: _buildCounter(context),
               ),
               SizedBox(width: backButtonWidth)
             ],
@@ -51,14 +51,11 @@ class TopBar extends StatelessWidget {
     );
   }
 
-  Widget _buildCounter() {
+  Widget _buildCounter(BuildContext context) {
     return Center(
       child: RichText(
         text: TextSpan(
-          style: TextStyle(
-            fontSize: 14.0,
-            color: Colors.black,
-          ),
+          style: Theme.of(context).primaryTextTheme.bodyText2,
           children: <TextSpan>[
             TextSpan(
                 text: '$currentQuestion',
@@ -76,9 +73,6 @@ class TopBar extends StatelessWidget {
       child: Column(
         children: <Widget>[
           LinearProgressIndicator(
-            backgroundColor: Color.fromRGBO(175, 205, 97, 1.0),
-            valueColor:
-                AlwaysStoppedAnimation<Color>(Color.fromRGBO(0, 119, 113, 1.0)),
             value: currentQuestion.toDouble() / numberQuestions.toDouble(),
           ),
         ],
