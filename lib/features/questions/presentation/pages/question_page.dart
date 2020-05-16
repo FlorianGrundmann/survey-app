@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:survey_app/features/questions/presentation/widgets/standard_question.dart';
 
+import '../widgets/next_button.dart';
+import '../widgets/standard_question.dart';
 import '../widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -50,48 +51,15 @@ class _QuestionPageState extends State<QuestionPage> {
                       });
                     },
                   ),
-                  _buildNextButton(),
+                  NextButton(
+                    activated: (_answerSelected != null),
+                    onPressed: () {},
+                  ),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildNextButton() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 30),
-      child: SizedBox(
-        width: double.infinity,
-        height: 70,
-        child: RaisedButton(
-          elevation: 0.0,
-          color: Color.fromRGBO(0, 119, 113, 1.0),
-          disabledColor: Colors.lightGreen[200],
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
-          ),
-          child: Row(
-            children: <Widget>[
-              SizedBox(width: chevronSize),
-              Expanded(
-                child: Center(
-                  child: Text(
-                    'Weiter',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Color.fromRGBO(175, 205, 97, 1.0),
-                    ),
-                  ),
-                ),
-              ),
-              Icon(Icons.chevron_right, size: chevronSize),
-            ],
-          ),
-          onPressed: _answerSelected != null ? () {} : null,
-        ),
       ),
     );
   }
