@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:survey_app/features/questions/presentation/widgets/custom_radio_button.dart';
-import 'package:survey_app/features/questions/presentation/widgets/top_bar.dart';
+
+import '../widgets/answer_radio_group.dart';
+import '../widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
   QuestionPage({Key key}) : super(key: key);
@@ -16,6 +17,8 @@ class _QuestionPageState extends State<QuestionPage> {
 
   final int currentQuestion = 2;
   final int numberQuestions = 10;
+
+  int _answerSelected;
 
   _QuestionPageState();
 
@@ -81,22 +84,14 @@ class _QuestionPageState extends State<QuestionPage> {
 
   Widget _buildQuestionButtons() {
     return SizedBox.expand(
-      child: Container(
-          //color: Colors.red,
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          CustomRadioButton(text: 'Trifft nicht zu', onPressed: () {}),
-          CustomRadioButton(text: 'Trifft etwas zu', onPressed: () {}),
-          CustomRadioButton(
-            text: 'Trifft ziemlich zu',
-            onPressed: () {},
-            activated: true,
-          ),
-          CustomRadioButton(text: 'Triff stark zu', onPressed: () {}),
-        ],
-      )),
+      child: AnswerRadioGroup(
+        onChange: (value) {
+          setState(() {
+            _answerSelected = value;
+          });
+        },
+        answerSelected: _answerSelected,
+      ),
     );
   }
 
@@ -130,7 +125,7 @@ class _QuestionPageState extends State<QuestionPage> {
               Icon(Icons.chevron_right, size: chevronSize),
             ],
           ),
-          onPressed: () {},
+          onPressed: _answerSelected != null ? () {} : null,
         ),
       ),
     );

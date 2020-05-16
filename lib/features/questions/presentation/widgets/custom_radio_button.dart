@@ -34,7 +34,7 @@ class CustomRadioButton extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        onPressed: activated ? onPressed : null,
+        onPressed: onPressed,
       ),
     );
   }
