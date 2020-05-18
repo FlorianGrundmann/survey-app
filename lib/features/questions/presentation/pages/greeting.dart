@@ -12,21 +12,23 @@ class Greeting extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset(ImagesPaths.healthProfessionals),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            'Lorem Ipsum',
-            style: Theme.of(context).textTheme.headline2,
+          Image.asset(
+            ImagesPaths.healthProfessionals,
+            width: 320,
           ),
           SizedBox(
-            height: 10,
+            height: 30,
           ),
           Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...',
-            style: Theme.of(context).textTheme.headline1,
+            'Fragebogen zur Videoaufklärung',
+            style: Theme.of(context).textTheme.headline4,
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Text(
+              'Liebe Patientin, lieber Patient,\n\nbitte nutzen Sie Gelegenheit, um uns mit dem folgenden Fragebogen Ihre Eindrücke mitzuteilen. \n\nIhre Antworten werden streng anonym gespeichert und ausgewertet und haben keinerlei Auswirkungen auf Ihre individuelle medizinische Behandlung.\n\nVielen Dank im Voraus! \n\nIhr Ärzte-Team',
+              style: Theme.of(context).textTheme.headline6),
           SizedBox(
             height: 10,
           ),
