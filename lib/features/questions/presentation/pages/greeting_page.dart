@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:survey_app/core/constants/paths.dart';
 import 'package:survey_app/features/questions/presentation/widgets/next_button.dart';
 
-class Greeting extends StatelessWidget {
-  const Greeting({Key key}) : super(key: key);
+class GreetingPage extends StatelessWidget {
+  const GreetingPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
