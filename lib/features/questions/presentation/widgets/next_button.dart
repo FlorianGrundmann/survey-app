@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class NextButton extends StatelessWidget {
   final bool activated;
   final Function onPressed;
+  final String text;
 
   final double chevronSize = 40;
 
@@ -10,6 +11,7 @@ class NextButton extends StatelessWidget {
     Key key,
     @required this.activated,
     @required this.onPressed,
+    this.text,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class NextButton extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Text(
-                    'Weiter',
+                    text,
                     style: Theme.of(context).textTheme.button,
                   ),
                 ),
