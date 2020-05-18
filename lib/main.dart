@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:survey_app/features/questions/presentation/pages/thank_you.dart';
 
 import 'core/style/survey_theme.dart';
-import 'features/questions/presentation/pages/greeting.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: SurveyTheme.surveyTheme,
       home: Scaffold(
-        body: Greeting(),
+        body: ThankYouPage(),
       ),
     );
   }
