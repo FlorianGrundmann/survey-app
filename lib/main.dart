@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'core/style/survey_theme.dart';
-import 'features/questions/presentation/pages/question_page.dart';
+import 'features/questions/presentation/pages/main_question_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: SurveyTheme.surveyTheme,
       home: Scaffold(
-        body: QuestionPage(),
+        body: MainQuestionPage(),
       ),
     );
   }

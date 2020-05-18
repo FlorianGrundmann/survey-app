@@ -5,7 +5,18 @@ import '../widgets/standard_question.dart';
 import '../widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
-  QuestionPage({Key key}) : super(key: key);
+  final String question;
+  final Function(int) onNext;
+  final int currentQuestion;
+  final int numberQuestions;
+
+  QuestionPage({
+    Key key,
+    @required this.question,
+    @required this.onNext,
+    @required this.currentQuestion,
+    @required this.numberQuestions,
+  }) : super(key: key);
 
   @override
   _QuestionPageState createState() => _QuestionPageState();
@@ -15,9 +26,6 @@ class _QuestionPageState extends State<QuestionPage> {
   final double paddingWidth = 50;
   final double buttonHeight = 70;
   final double chevronSize = 40;
-
-  final int currentQuestion = 2;
-  final int numberQuestions = 10;
 
   int _answerSelected;
 
@@ -30,8 +38,8 @@ class _QuestionPageState extends State<QuestionPage> {
       child: Column(
         children: <Widget>[
           TopBar(
-            currentQuestion: currentQuestion,
-            numberQuestions: numberQuestions,
+            currentQuestion: widget.currentQuestion,
+            numberQuestions: widget.numberQuestions,
             onBackButtonTap: () {},
           ),
           Expanded(
@@ -40,8 +48,7 @@ class _QuestionPageState extends State<QuestionPage> {
               child: Column(
                 children: <Widget>[
                   StandardQuestion(
-                    questionText:
-                        'Der Ablauf der Anästhesie sollte besser erläutert werden.',
+                    questionText: widget.question,
                     answerSelectedValue: _answerSelected,
                     onAnswerSelected: (value) {
                       setState(() {
@@ -51,7 +58,11 @@ class _QuestionPageState extends State<QuestionPage> {
                   ),
                   NextButton(
                     activated: (_answerSelected != null),
-                    onPressed: () {},
+                    onPressed: () {
+                      int answer = _answerSelected;
+                      _answerSelected = null;
+                      widget.onNext(answer);
+                    },
                   ),
                 ],
               ),
