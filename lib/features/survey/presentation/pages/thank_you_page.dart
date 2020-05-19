@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:survey_app/core/constants/paths.dart';
+
+import '../../../../core/values/survey_paths.dart';
 
 class ThankYouPage extends StatelessWidget {
   const ThankYouPage({Key key}) : super(key: key);

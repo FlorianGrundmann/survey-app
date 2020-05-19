@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/paths.dart';
+import '../../../../core/values/survey_paths.dart';
 import '../widgets/next_button.dart';
 
 class GreetingPage extends StatelessWidget {
