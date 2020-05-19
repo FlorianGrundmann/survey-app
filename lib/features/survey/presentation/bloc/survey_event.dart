@@ -7,7 +7,7 @@ abstract class SurveyEvent extends Equatable {
   const SurveyEvent();
 }
 
-class LoadQuestionsEvent extends SurveyEvent {}
+class StartSurveyEvent extends SurveyEvent {}
 
 class SubmitAnswersEvent extends SurveyEvent {}
 

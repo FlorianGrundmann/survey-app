@@ -11,7 +11,7 @@ class NextButton extends StatelessWidget {
     Key key,
     @required this.activated,
     @required this.onPressed,
-    this.text,
+    @required this.text,
   }) : super(key: key);
 
   @override

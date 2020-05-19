@@ -11,6 +11,7 @@ class QuestionPage extends StatefulWidget {
   final int numberQuestions;
 
   QuestionPage({
+    //TODO Fix constructor, but state values in state
     Key key,
     @required this.question,
     @required this.onNext,
@@ -63,6 +64,7 @@ class _QuestionPageState extends State<QuestionPage> {
                       _answerSelected = null;
                       widget.onNext(answer);
                     },
+                    text: 'Weiter',
                   ),
                 ],
               ),

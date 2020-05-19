@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/presentation/bloc/survey_bloc.dart';
 
 import '../../../../core/values/survey_paths.dart';
 import '../widgets/next_button.dart';
@@ -35,7 +37,9 @@ class GreetingPage extends StatelessWidget {
           ),
           NextButton(
             activated: true,
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<SurveyBloc>(context).add(StartSurveyEvent());
+            },
             text: 'Start',
           ),
         ],

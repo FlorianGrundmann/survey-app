@@ -13,15 +13,17 @@ Future<void> init() async {
   //! Features
   // Bloc
   sl.registerFactory(
-    () => SurveyBloc(),
+    () => SurveyBloc(
+      startSurveyUsecase: sl(),
+    ),
   );
 
   //Use cases
-  sl.registerLazySingleton(() => StartSurveyUsecase());
+  sl.registerLazySingleton(() => StartSurveyUsecase(repository: sl()));
 
   //Repositories
   sl.registerLazySingleton<QuestionsRepository>(
-      () => QuestionsRepositoryImpl());
+      () => QuestionsRepositoryImpl(localDataSource: sl()));
 
   //Data
   sl.registerLazySingleton<LocalDataSource>(

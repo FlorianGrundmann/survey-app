@@ -11,8 +11,17 @@ class GreetingState extends SurveyState {}
 
 class LoadingState extends SurveyState {}
 
-class QuestionsState extends SurveyState {}
+class QuestionState extends SurveyState {
+  final Question question;
+
+  @override
+  List<Object> get props => [question];
+
+  QuestionState(this.question);
+}
 
 class SavingState extends SurveyState {}
 
 class ThankYouState extends SurveyState {}
+
+class FailureState extends SurveyState {}
