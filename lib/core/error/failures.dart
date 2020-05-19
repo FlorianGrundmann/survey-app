@@ -5,5 +5,10 @@ abstract class Failure extends Equatable {
   List<Object> get props => [];
 }
 
+class Success extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+
 //General failures
 class LocalDatabaseFailure extends Failure {}
