@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:survey_app/features/questions/presentation/pages/greeting_page.dart';
-import 'package:survey_app/features/questions/presentation/pages/main_question_page.dart';
-import 'package:survey_app/features/questions/presentation/pages/thank_you_page.dart';
 
 import 'core/style/survey_theme.dart';
+import 'features/survey/presentation/pages/thank_you_page.dart';
 
 void main() {
   runApp(MyApp());

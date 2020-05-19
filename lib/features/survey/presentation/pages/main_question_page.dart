@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:survey_app/features/questions/presentation/pages/question_page.dart';
+
+import 'question_page.dart';
 
 class MainQuestionPage extends StatefulWidget {
   @override

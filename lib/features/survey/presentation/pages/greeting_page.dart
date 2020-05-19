@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:survey_app/core/constants/paths.dart';
-import 'package:survey_app/features/questions/presentation/widgets/next_button.dart';
+
+import '../../../../core/constants/paths.dart';
+import '../widgets/next_button.dart';
 
 class GreetingPage extends StatelessWidget {
   const GreetingPage({Key key}) : super(key: key);
