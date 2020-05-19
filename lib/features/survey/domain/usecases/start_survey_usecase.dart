@@ -12,6 +12,6 @@ class StartSurveyUsecase extends UseCase {
 
   @override
   Future<Either<Failure, List<Question>>> call(params) {
-    return repository.getAllQuestions();
+    return repository.loadAllQuestions();
   }
 }

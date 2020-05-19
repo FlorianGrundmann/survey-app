@@ -24,13 +24,13 @@ void main() {
   test('Returns result from repository.', () async {
     //arrange
 
-    when(mockRepository.getAllQuestions())
+    when(mockRepository.loadAllQuestions())
         .thenAnswer((_) async => tRepositoryResult);
     //act
     final result = await usecase(NoParams);
     //assert
     expect(result, tRepositoryResult);
-    verify(mockRepository.getAllQuestions()).called(1);
+    verify(mockRepository.loadAllQuestions()).called(1);
     verifyNoMoreInteractions(mockRepository);
   });
 }

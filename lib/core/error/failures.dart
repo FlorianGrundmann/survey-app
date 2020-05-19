@@ -11,4 +11,4 @@ class Success extends Equatable {
 }
 
 //General failures
-class LocalDatabaseFailure extends Failure {}
+class LocalDataSourceFailure extends Failure {}
