@@ -62,7 +62,8 @@ class _QuestionPageState extends State<QuestionPage> {
                     activated: (_answerSelected != null),
                     onPressed: () {
                       if (_isLastQuestion()) {
-                        //TODO call submit question
+                        BlocProvider.of<SurveyBloc>(context)
+                            .add(SubmitAnswersEvent());
                       } else {
                         BlocProvider.of<SurveyBloc>(context)
                             .add(NextQuestionEvent());

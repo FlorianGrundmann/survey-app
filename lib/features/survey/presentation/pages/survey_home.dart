@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/presentation/pages/thank_you_page.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/survey_bloc.dart';
@@ -24,6 +25,8 @@ class SurveyHome extends StatelessWidget {
             return QuestionPage(
               questionState: state,
             );
+          } else if (state is ThankYouState) {
+            return ThankYouPage();
           } else {
             return Container(child: Text('unknown state'));
           }
