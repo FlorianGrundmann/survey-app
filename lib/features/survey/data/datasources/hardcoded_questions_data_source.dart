@@ -1,15 +1,15 @@
-import 'package:survey_app/features/survey/data/datasources/local_data_source.dart';
-import 'package:survey_app/features/survey/data/model/question_model.dart';
+import '../model/survey_element_model.dart';
+import 'local_data_source.dart';
 
 class HardCodedQuestionsDataSource implements LocalDataSource {
-  List<QuestionModel> _questions = [
-    QuestionModel('Es war zu viel Text auf den Folien.'),
-    QuestionModel('Die Stimme des Sprechers war angenehm.'),
-    QuestionModel('Der Sprecher sprach zu schnell oder undeutlich.'),
+  List<SurveyElementModel> _questions = [
+    SurveyElementModel('Es war zu viel Text auf den Folien.'),
+    SurveyElementModel('Die Stimme des Sprechers war angenehm.'),
+    SurveyElementModel('Der Sprecher sprach zu schnell oder undeutlich.'),
   ];
 
   @override
-  Future<List<QuestionModel>> loadAllQuestions() async {
+  Future<List<SurveyElementModel>> loadAllQuestions() async {
     return _questions;
   }
 }

@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'survey_element.dart';
 
 class Question extends Equatable {
   final String text;

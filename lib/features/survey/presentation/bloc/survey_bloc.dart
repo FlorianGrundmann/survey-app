@@ -7,8 +7,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../../domain/entities/answer.dart';
-import '../../domain/entities/question.dart';
+import '../../domain/entities/survey_element.dart';
 import '../../domain/usecases/start_survey_usecase.dart';
 import '../../domain/usecases/submit_survey_usecase.dart';
 
@@ -37,13 +36,13 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   ) async* {
     if (event is StartSurveyEvent) {
       yield LoadingState();
-      Either<Failure, List<Question>> result =
+      Either<Failure, List<SurveyElement>> result =
           await startSurveyUseCase(NoParams);
       yield result.fold(
         (failure) => FailureState(),
-        (questions) {
+        (surveyElements) {
           _currentQuestion = 0;
-          questionStates = questions.map((e) => QuestionState(e)).toList();
+          questionStates = surveyElements.map((e) => QuestionState(e)).toList();
           return questionStates[_currentQuestion];
         },
       );
@@ -56,7 +55,7 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
       }
     } else if (event is SubmitAnswersEvent) {
       yield LoadingState();
-      submitSurveyUseCase(Answer(0));
+      submitSurveyUseCase(questionStates.map((e) => e.surveyElement).toList());
       yield ThankYouState();
     }
   }

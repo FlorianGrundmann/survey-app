@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:survey_app/core/error/failures.dart';
-import 'package:survey_app/features/survey/domain/entities/answer.dart';
-import 'package:survey_app/features/survey/domain/entities/question.dart';
+import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 import 'package:survey_app/features/survey/presentation/bloc/survey_bloc.dart';
@@ -34,15 +33,16 @@ void main() {
   });
 
   group('StartSurveyEvent', () {
-    List<Question> tQuestions = [
-      Question('first question'),
-      Question('second question'),
-      Question('third question'),
+    List<SurveyElement> tSurveyElements = [
+      SurveyElement(question: Question('first question'), answer: Answer()),
+      SurveyElement(question: Question('second question'), answer: Answer()),
+      SurveyElement(question: Question('third question'), answer: Answer()),
     ];
 
     test('Calls repository to load all questions.', () async {
       //arrange
-      when(mockStartUseCase(any)).thenAnswer((_) async => Right(tQuestions));
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //act
       bloc.add(StartSurveyEvent());
       await untilCalled(mockStartUseCase(any));
@@ -54,12 +54,13 @@ void main() {
         'Emits states [Greeting, Loading, Question] with first question when StartSurveyEverent is added.',
         () async {
       //arrange
-      when(mockStartUseCase(any)).thenAnswer((_) async => Right(tQuestions));
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //assert later
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tQuestions[0]),
+        QuestionState(tSurveyElements[0]),
       ];
       expectLater(bloc, emitsInOrder(expected));
       //act
@@ -84,22 +85,23 @@ void main() {
   });
 
   group('NextQuestionEvent', () {
-    List<Question> tQuestions = [
-      Question('first question'),
-      Question('second question'),
-      Question('third question'),
+    List<SurveyElement> tSurveyElements = [
+      SurveyElement(question: Question('first question'), answer: Answer()),
+      SurveyElement(question: Question('second question'), answer: Answer()),
+      SurveyElement(question: Question('third question'), answer: Answer()),
     ];
     test(
         'Emits states [Greeting, Loading, Question, Question] with first and second question when StartSurveyEvent and NextQuestionEvent is added.',
         () async {
       //arrange
-      when(mockStartUseCase(any)).thenAnswer((_) async => Right(tQuestions));
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //assert later
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tQuestions[0]),
-        QuestionState(tQuestions[1]),
+        QuestionState(tSurveyElements[0]),
+        QuestionState(tSurveyElements[1]),
       ];
       expectLater(bloc, emitsInOrder(expected));
       //act
@@ -111,14 +113,15 @@ void main() {
         'Emits states [Greeting, Loading, Question, Question, Question] when next Question is called twice.',
         () async {
       //arrange
-      when(mockStartUseCase(any)).thenAnswer((_) async => Right(tQuestions));
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //assert later
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tQuestions[0]),
-        QuestionState(tQuestions[1]),
-        QuestionState(tQuestions[2]),
+        QuestionState(tSurveyElements[0]),
+        QuestionState(tSurveyElements[1]),
+        QuestionState(tSurveyElements[2]),
       ];
       expectLater(bloc, emitsInOrder(expected));
       //act
@@ -131,7 +134,8 @@ void main() {
         'Emits states [Greeting, Failure] when NextQuestionEvent is fired without StartSurveyEvent.',
         () async {
       //arrange
-      when(mockStartUseCase(any)).thenAnswer((_) async => Right(tQuestions));
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //assert later
       final expected = [
         GreetingState(),
@@ -144,33 +148,33 @@ void main() {
   });
 
   group('SubmitAnswersEvent', () {
-    List<Question> tQuestions = [
-      Question('first question'),
+    List<SurveyElement> tSurveyElements = [
+      SurveyElement(question: Question('first question'), answer: Answer()),
     ];
 
-    List<Answer> tAnswers = [
-      Answer(2),
-    ];
-
-    test('Calls SubmitAnswersUseCase', () async {
+    test('Calls SubmitAnswersUseCase with survey elements', () async {
       //arrange
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //act
+      bloc.add(StartSurveyEvent());
       bloc.add(SubmitAnswersEvent());
       await untilCalled(mockSubmitUseCase(any));
       //assert
-      verify(mockSubmitUseCase(any));
+      verify(mockSubmitUseCase(tSurveyElements));
     });
 
     test(
         'Emits States [Greeting, Loading, Question, Loading, ThankYou] going through all relevant survey events.',
         () async {
       //arrange
-      when(mockStartUseCase(any)).thenAnswer((_) async => Right(tQuestions));
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
       //assert later
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tQuestions[0]),
+        QuestionState(tSurveyElements[0]),
         LoadingState(),
         ThankYouState(),
       ];

@@ -1,5 +1,5 @@
-import 'package:survey_app/features/survey/data/model/question_model.dart';
+import '../model/survey_element_model.dart';
 
 abstract class LocalDataSource {
-  Future<List<QuestionModel>> loadAllQuestions();
+  Future<List<SurveyElementModel>> loadAllQuestions();
 }

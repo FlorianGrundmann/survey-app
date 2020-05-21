@@ -23,7 +23,7 @@ class SurveyHome extends StatelessWidget {
           } else if (state is QuestionState) {
             return QuestionPage(
                 //TODO Fix constructor, but state values in state
-                question: state.question.text,
+                question: state.surveyElement.question.text,
                 onNext: (value) {},
                 currentQuestion: 1,
                 numberQuestions: 10);
