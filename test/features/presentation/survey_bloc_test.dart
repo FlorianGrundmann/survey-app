@@ -60,7 +60,11 @@ void main() {
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tSurveyElements[0]),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
       ];
       expectLater(bloc, emitsInOrder(expected));
       //act
@@ -100,8 +104,16 @@ void main() {
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tSurveyElements[0]),
-        QuestionState(tSurveyElements[1]),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 1,
+          surveyElement: tSurveyElements[1],
+        ),
       ];
       expectLater(bloc, emitsInOrder(expected));
       //act
@@ -119,9 +131,21 @@ void main() {
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tSurveyElements[0]),
-        QuestionState(tSurveyElements[1]),
-        QuestionState(tSurveyElements[2]),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 1,
+          surveyElement: tSurveyElements[1],
+        ),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 2,
+          surveyElement: tSurveyElements[2],
+        ),
       ];
       expectLater(bloc, emitsInOrder(expected));
       //act
@@ -174,7 +198,11 @@ void main() {
       final expected = [
         GreetingState(),
         LoadingState(),
-        QuestionState(tSurveyElements[0]),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
         LoadingState(),
         ThankYouState(),
       ];

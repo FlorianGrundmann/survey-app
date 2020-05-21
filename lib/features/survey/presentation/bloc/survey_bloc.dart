@@ -42,7 +42,15 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
         (failure) => FailureState(),
         (surveyElements) {
           _currentQuestion = 0;
-          questionStates = surveyElements.map((e) => QuestionState(e)).toList();
+          questionStates = [];
+          for (int i = 0; i < surveyElements.length; i++) {
+            questionStates.add(QuestionState(
+              surveyElement: surveyElements[i],
+              numberTotalQuestions: surveyElements.length,
+              questionIndex: i,
+            ));
+          }
+
           return questionStates[_currentQuestion];
         },
       );

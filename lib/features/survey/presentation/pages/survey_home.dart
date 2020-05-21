@@ -22,11 +22,9 @@ class SurveyHome extends StatelessWidget {
             );
           } else if (state is QuestionState) {
             return QuestionPage(
-                //TODO Fix constructor, but state values in state
-                question: state.surveyElement.question.text,
-                onNext: (value) {},
-                currentQuestion: 1,
-                numberQuestions: 10);
+              questionState: state,
+              onNext: (value) {},
+            );
           } else {
             return Container(child: Text('unknown state'));
           }

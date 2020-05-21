@@ -1,7 +1,7 @@
 part of 'survey_element.dart';
 
 class Answer extends Equatable {
-  final int answerIndex;
+  int answerIndex;
 
   Answer([this.answerIndex]);
 

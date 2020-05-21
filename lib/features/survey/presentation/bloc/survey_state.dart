@@ -13,11 +13,18 @@ class LoadingState extends SurveyState {}
 
 class QuestionState extends SurveyState {
   final SurveyElement surveyElement;
+  final int questionIndex;
+  final int numberTotalQuestions;
 
   @override
-  List<Object> get props => [surveyElement];
+  List<Object> get props =>
+      [surveyElement, questionIndex, numberTotalQuestions];
 
-  QuestionState(this.surveyElement);
+  QuestionState({
+    @required this.surveyElement,
+    @required this.questionIndex,
+    @required this.numberTotalQuestions,
+  });
 }
 
 class SavingState extends SurveyState {}

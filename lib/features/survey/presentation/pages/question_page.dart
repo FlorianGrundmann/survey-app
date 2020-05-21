@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../bloc/survey_bloc.dart';
 import '../widgets/next_button.dart';
 import '../widgets/standard_question.dart';
 import '../widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
-  final String question;
+  final QuestionState questionState;
   final Function(int) onNext;
-  final int currentQuestion;
-  final int numberQuestions;
 
   QuestionPage({
-    //TODO Fix constructor, but state values in state
     Key key,
-    @required this.question,
+    @required this.questionState,
     @required this.onNext,
-    @required this.currentQuestion,
-    @required this.numberQuestions,
   }) : super(key: key);
 
   @override
@@ -28,7 +24,12 @@ class _QuestionPageState extends State<QuestionPage> {
   final double buttonHeight = 70;
   final double chevronSize = 40;
 
-  int _answerSelected;
+  set _answerSelected(int value) {
+    widget.questionState.surveyElement.answer.answerIndex = value;
+  }
+
+  int get _answerSelected =>
+      widget.questionState.surveyElement.answer.answerIndex;
 
   _QuestionPageState();
 
@@ -39,8 +40,8 @@ class _QuestionPageState extends State<QuestionPage> {
       child: Column(
         children: <Widget>[
           TopBar(
-            currentQuestion: widget.currentQuestion,
-            numberQuestions: widget.numberQuestions,
+            currentQuestion: widget.questionState.questionIndex,
+            numberQuestions: widget.questionState.numberTotalQuestions,
             onBackButtonTap: () {},
           ),
           Expanded(
@@ -49,7 +50,8 @@ class _QuestionPageState extends State<QuestionPage> {
               child: Column(
                 children: <Widget>[
                   StandardQuestion(
-                    questionText: widget.question,
+                    questionText:
+                        widget.questionState.surveyElement.question.text,
                     answerSelectedValue: _answerSelected,
                     onAnswerSelected: (value) {
                       setState(() {
