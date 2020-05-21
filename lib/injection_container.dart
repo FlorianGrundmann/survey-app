@@ -14,12 +14,12 @@ Future<void> init() async {
   // Bloc
   sl.registerFactory(
     () => SurveyBloc(
-      startSurveyUsecase: sl(),
+      startSurveyUseCase: sl(),
     ),
   );
 
   //Use cases
-  sl.registerLazySingleton(() => StartSurveyUsecase(repository: sl()));
+  sl.registerLazySingleton(() => StartSurveyUseCase(repository: sl()));
 
   //Repositories
   sl.registerLazySingleton<QuestionsRepository>(

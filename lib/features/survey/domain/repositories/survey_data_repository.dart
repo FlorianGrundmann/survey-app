@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
-import '../entities/survey_data.dart';
+import '../entities/answer.dart';
 
 abstract class SurveyDataRepository {
-  Future<Either<Failure, Success>> saveSurveyData(SurveyData data);
+  Future<Either<Failure, Success>> saveSurveyData(Answer data);
 }

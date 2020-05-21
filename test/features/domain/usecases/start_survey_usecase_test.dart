@@ -15,7 +15,7 @@ void main() {
 
   setUp(() {
     mockRepository = MockQuestionsRepository();
-    usecase = StartSurveyUsecase(repository: mockRepository);
+    usecase = StartSurveyUseCase(repository: mockRepository);
   });
 
   final Either<Failure, List<Question>> tRepositoryResult =

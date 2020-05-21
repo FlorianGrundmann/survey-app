@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/core/usecases/usecase.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
+import 'package:survey_app/features/survey/domain/entities/answer.dart';
 import 'package:survey_app/features/survey/domain/repositories/survey_data_repository.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 
@@ -15,19 +15,19 @@ void main() {
 
   setUp(() {
     mockRepository = MockSurveyDataRepository();
-    useCase = SubmitSurveyUsecase(mockRepository);
+    useCase = SubmitSurveyUseCase(mockRepository);
   });
 
   final Either<Failure, Success> tRepositoryResult = Right(Success());
-  final SurveyData tSurveyData = SurveyData();
+  final Answer tAnswer = Answer(0);
   test('Returns repository result', () async {
     //arrange
     when(mockRepository.saveSurveyData(any))
         .thenAnswer((_) async => tRepositoryResult);
     //act
-    final result = await useCase(tSurveyData);
+    final result = await useCase(tAnswer);
     //assert
-    verify(mockRepository.saveSurveyData(tSurveyData)).called(1);
+    verify(mockRepository.saveSurveyData(tAnswer)).called(1);
     verifyNoMoreInteractions(mockRepository);
     expect(result, tRepositoryResult);
   });
