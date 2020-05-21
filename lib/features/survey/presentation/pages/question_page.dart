@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/survey_bloc.dart';
 import '../widgets/next_button.dart';
@@ -7,12 +8,10 @@ import '../widgets/top_bar.dart';
 
 class QuestionPage extends StatefulWidget {
   final QuestionState questionState;
-  final Function(int) onNext;
 
   QuestionPage({
     Key key,
     @required this.questionState,
-    @required this.onNext,
   }) : super(key: key);
 
   @override
@@ -40,7 +39,7 @@ class _QuestionPageState extends State<QuestionPage> {
       child: Column(
         children: <Widget>[
           TopBar(
-            currentQuestion: widget.questionState.questionIndex,
+            currentQuestion: widget.questionState.questionIndex + 1,
             numberQuestions: widget.questionState.numberTotalQuestions,
             onBackButtonTap: () {},
           ),
@@ -62,11 +61,14 @@ class _QuestionPageState extends State<QuestionPage> {
                   NextButton(
                     activated: (_answerSelected != null),
                     onPressed: () {
-                      int answer = _answerSelected;
-                      _answerSelected = null;
-                      widget.onNext(answer);
+                      if (_isLastQuestion()) {
+                        //TODO call submit question
+                      } else {
+                        BlocProvider.of<SurveyBloc>(context)
+                            .add(NextQuestionEvent());
+                      }
                     },
-                    text: 'Weiter',
+                    text: _isLastQuestion() ? 'Absenden' : 'Weiter',
                   ),
                 ],
               ),
@@ -75,5 +77,10 @@ class _QuestionPageState extends State<QuestionPage> {
         ],
       ),
     );
+  }
+
+  bool _isLastQuestion() {
+    return (widget.questionState.questionIndex + 1 ==
+        widget.questionState.numberTotalQuestions);
   }
 }

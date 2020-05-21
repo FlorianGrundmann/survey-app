@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/survey_element.dart';
 import '../../domain/repositories/questions_repository.dart';
-import '../datasources/local_data_source.dart';
+import '../datasources/local_question_data_source.dart';
 
 class QuestionsRepositoryImpl implements QuestionsRepository {
-  final LocalDataSource localDataSource;
+  final LocalQuestionDataSource localDataSource;
 
   QuestionsRepositoryImpl({
     @required this.localDataSource,

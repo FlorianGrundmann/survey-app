@@ -23,7 +23,6 @@ class SurveyHome extends StatelessWidget {
           } else if (state is QuestionState) {
             return QuestionPage(
               questionState: state,
-              onNext: (value) {},
             );
           } else {
             return Container(child: Text('unknown state'));
