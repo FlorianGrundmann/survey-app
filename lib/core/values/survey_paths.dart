@@ -4,5 +4,4 @@ class ImagesPaths {
   static const String smileyHealthProfessionals =
       'assets/images/smiley-health-professionals.png';
   static const String healthProIcon = 'assets/images/health-pro-icon.png';
-  static const String stetoscopeIcon = 'assets/images/stetoscope-icon.png';
 }

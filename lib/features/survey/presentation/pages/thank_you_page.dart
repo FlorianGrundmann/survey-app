@@ -13,18 +13,10 @@ class ThankYouPage extends StatelessWidget {
       padding: EdgeInsets.all(50),
       child: Stack(
         children: <Widget>[
-          Positioned(
-            top: 0.0,
-            right: 0.0,
-            child: new IconButton(
-                iconSize: 50.0,
-                icon: Image.asset(
-                  ImagesPaths.stetoscopeIcon,
-                ),
-                onPressed: () {
-                  BlocProvider.of<SurveyBloc>(context)
-                      .add(OpenAdminMenuEvent());
-                }),
+          GestureDetector(
+            onTap: () {
+              BlocProvider.of<SurveyBloc>(context).add(OpenAdminMenuEvent());
+            },
           ),
           Center(
             child: Column(
