@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'core/values/styles/survey_styles.dart';
-import 'features/survey/presentation/pages/admin_menu_page.dart';
+import 'features/survey/presentation/pages/survey_home.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -16,10 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: SurveyTheme.surveyTheme,
       home: Scaffold(
-        body: AdminMenuPage(),
-        //body: SurveyHome(),
+        //body: AdminMenuPage(),
+        body: SurveyHome(),
       ),
     );
   }
