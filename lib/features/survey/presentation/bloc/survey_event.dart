@@ -14,3 +14,5 @@ class SubmitAnswersEvent extends SurveyEvent {}
 class NextQuestionEvent extends SurveyEvent {}
 
 class PreviousQuestionEvent extends SurveyEvent {}
+
+class RestartEvent extends SurveyEvent {}

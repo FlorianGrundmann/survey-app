@@ -45,6 +45,8 @@ class _QuestionPageState extends State<QuestionPage> {
               if (!_isFirstQuestion()) {
                 BlocProvider.of<SurveyBloc>(context)
                     .add(PreviousQuestionEvent());
+              } else {
+                BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
               }
             },
           ),

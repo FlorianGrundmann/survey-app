@@ -241,4 +241,27 @@ void main() {
       bloc.add(PreviousQuestionEvent());
     });
   });
+
+  group('RestartEvent', () {
+    test('Emits Greeting state after restart.', () async {
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
+      //assert later
+      final expected = [
+        GreetingState(),
+        LoadingState(),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
+        GreetingState(),
+      ];
+      expectLater(bloc, emitsInAnyOrder(expected));
+
+      //act
+      bloc.add(StartSurveyEvent());
+      bloc.add(RestartEvent());
+    });
+  });
 }

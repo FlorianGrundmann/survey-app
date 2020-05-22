@@ -79,6 +79,10 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
           yield questionStates[_currentQuestion];
         }
       }
+    } else if (event is RestartEvent) {
+      _currentQuestion = null;
+      questionStates = null;
+      yield GreetingState();
     }
   }
 }
