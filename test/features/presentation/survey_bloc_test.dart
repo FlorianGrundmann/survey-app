@@ -264,4 +264,17 @@ void main() {
       bloc.add(RestartEvent());
     });
   });
+
+  group('OpenAdminMenuEvent', () {
+    test('Emits AdminMenuState after firering.', () async {
+      //assert later
+      final expected = [
+        AdminMenuState(),
+      ];
+      expectLater(bloc, emitsInAnyOrder(expected));
+
+      //act
+      bloc.add(OpenAdminMenuEvent());
+    });
+  });
 }

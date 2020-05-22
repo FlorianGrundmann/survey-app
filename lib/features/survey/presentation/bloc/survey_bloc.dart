@@ -83,6 +83,8 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
       _currentQuestion = null;
       questionStates = null;
       yield GreetingState();
+    } else if (event is OpenAdminMenuEvent) {
+      yield AdminMenuState();
     }
   }
 }

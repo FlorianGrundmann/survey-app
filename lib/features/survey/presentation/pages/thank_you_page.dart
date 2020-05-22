@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/values/survey_paths.dart';
+import '../bloc/survey_bloc.dart';
 
 class ThankYouPage extends StatelessWidget {
   const ThankYouPage({Key key}) : super(key: key);
@@ -19,7 +21,10 @@ class ThankYouPage extends StatelessWidget {
                 icon: Image.asset(
                   ImagesPaths.stetoscopeIcon,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  BlocProvider.of<SurveyBloc>(context)
+                      .add(OpenAdminMenuEvent());
+                }),
           ),
           Center(
             child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/presentation/pages/admin_menu_page.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/survey_bloc.dart';
@@ -27,6 +28,8 @@ class SurveyHome extends StatelessWidget {
             );
           } else if (state is ThankYouState) {
             return ThankYouPage();
+          } else if (state is AdminMenuState) {
+            return AdminMenuPage();
           } else {
             return Container(child: Text('unknown state'));
           }

@@ -16,3 +16,5 @@ class NextQuestionEvent extends SurveyEvent {}
 class PreviousQuestionEvent extends SurveyEvent {}
 
 class RestartEvent extends SurveyEvent {}
+
+class OpenAdminMenuEvent extends SurveyEvent {}
