@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'core/values/styles/survey_styles.dart';
-import 'features/survey/presentation/pages/survey_home.dart';
+import 'features/survey/presentation/pages/admin_menu_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: SurveyTheme.surveyTheme,
       home: Scaffold(
-        body: SurveyHome(),
+        body: AdminMenuPage(),
+        //body: SurveyHome(),
       ),
     );
   }
