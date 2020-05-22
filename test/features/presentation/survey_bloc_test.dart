@@ -16,6 +16,12 @@ void main() {
   MockStartSurveyUseCase mockStartUseCase;
   MockSubmitSurveyUseCase mockSubmitUseCase;
 
+  List<SurveyElement> tSurveyElements = [
+    SurveyElement(question: Question('first question'), answer: Answer()),
+    SurveyElement(question: Question('second question'), answer: Answer()),
+    SurveyElement(question: Question('third question'), answer: Answer()),
+  ];
+
   setUp(() {
     mockStartUseCase = MockStartSurveyUseCase();
     mockSubmitUseCase = MockSubmitSurveyUseCase();
@@ -33,12 +39,6 @@ void main() {
   });
 
   group('StartSurveyEvent', () {
-    List<SurveyElement> tSurveyElements = [
-      SurveyElement(question: Question('first question'), answer: Answer()),
-      SurveyElement(question: Question('second question'), answer: Answer()),
-      SurveyElement(question: Question('third question'), answer: Answer()),
-    ];
-
     test('Calls repository to load all questions.', () async {
       //arrange
       when(mockStartUseCase(any))
@@ -89,11 +89,6 @@ void main() {
   });
 
   group('NextQuestionEvent', () {
-    List<SurveyElement> tSurveyElements = [
-      SurveyElement(question: Question('first question'), answer: Answer()),
-      SurveyElement(question: Question('second question'), answer: Answer()),
-      SurveyElement(question: Question('third question'), answer: Answer()),
-    ];
     test(
         'Emits states [Greeting, Loading, Question, Question] with first and second question when StartSurveyEvent and NextQuestionEvent is added.',
         () async {
@@ -211,6 +206,39 @@ void main() {
       //act
       bloc.add(StartSurveyEvent());
       bloc.add(SubmitAnswersEvent());
+    });
+  });
+
+  group('PreviousQuestionEvent', () {
+    test('Emits previous question state again when firering event.', () async {
+      when(mockStartUseCase(any))
+          .thenAnswer((_) async => Right(tSurveyElements));
+      //assert later
+      final expected = [
+        GreetingState(),
+        LoadingState(),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 1,
+          surveyElement: tSurveyElements[1],
+        ),
+        QuestionState(
+          numberTotalQuestions: tSurveyElements.length,
+          questionIndex: 0,
+          surveyElement: tSurveyElements[0],
+        ),
+      ];
+      expectLater(bloc, emitsInAnyOrder(expected));
+
+      //act
+      bloc.add(StartSurveyEvent());
+      bloc.add(NextQuestionEvent());
+      bloc.add(PreviousQuestionEvent());
     });
   });
 }

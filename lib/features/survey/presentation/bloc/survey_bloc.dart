@@ -30,6 +30,7 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   @override
   SurveyState get initialState => GreetingState();
 
+  //TODO Cleanup and refactor function
   @override
   Stream<SurveyState> mapEventToState(
     SurveyEvent event,
@@ -50,7 +51,6 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
               questionIndex: i,
             ));
           }
-
           return questionStates[_currentQuestion];
         },
       );
@@ -63,8 +63,22 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
       }
     } else if (event is SubmitAnswersEvent) {
       yield LoadingState();
-      submitSurveyUseCase(questionStates.map((e) => e.surveyElement).toList());
-      yield ThankYouState();
+      if (questionStates != null) {
+        submitSurveyUseCase(
+            questionStates.map((e) => e.surveyElement).toList());
+        yield ThankYouState();
+      } else {
+        yield FailureState();
+      }
+    } else if (event is PreviousQuestionEvent) {
+      if (_currentQuestion > 0) {
+        if (_currentQuestion == null || questionStates == null) {
+          yield FailureState();
+        } else {
+          _currentQuestion--;
+          yield questionStates[_currentQuestion];
+        }
+      }
     }
   }
 }

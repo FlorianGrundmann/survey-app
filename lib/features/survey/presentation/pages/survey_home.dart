@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:survey_app/features/survey/presentation/pages/thank_you_page.dart';
 
 import '../../../../injection_container.dart';
 import '../bloc/survey_bloc.dart';
 import 'greeting_page.dart';
 import 'question_page.dart';
+import 'thank_you_page.dart';
 
 class SurveyHome extends StatelessWidget {
   @override

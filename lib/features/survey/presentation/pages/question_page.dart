@@ -41,7 +41,12 @@ class _QuestionPageState extends State<QuestionPage> {
           TopBar(
             currentQuestion: widget.questionState.questionIndex + 1,
             numberQuestions: widget.questionState.numberTotalQuestions,
-            onBackButtonTap: () {},
+            onBackButtonTap: () {
+              if (!_isFirstQuestion()) {
+                BlocProvider.of<SurveyBloc>(context)
+                    .add(PreviousQuestionEvent());
+              }
+            },
           ),
           Expanded(
             child: Container(
@@ -83,5 +88,9 @@ class _QuestionPageState extends State<QuestionPage> {
   bool _isLastQuestion() {
     return (widget.questionState.questionIndex + 1 ==
         widget.questionState.numberTotalQuestions);
+  }
+
+  bool _isFirstQuestion() {
+    return (widget.questionState.questionIndex == 0);
   }
 }

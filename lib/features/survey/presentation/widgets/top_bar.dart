@@ -42,7 +42,7 @@ class TopBar extends StatelessWidget {
     return SizedBox(
       width: backButtonWidth,
       child: FlatButton(
-        onPressed: () {},
+        onPressed: onBackButtonTap,
         child: Icon(
           Icons.chevron_left,
           size: 40,
