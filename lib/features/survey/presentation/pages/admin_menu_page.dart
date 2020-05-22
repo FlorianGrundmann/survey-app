@@ -22,6 +22,20 @@ class AdminMenuPage extends StatelessWidget {
             Text(
               'Admin Menu',
               style: Theme.of(context).textTheme.headline2,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 70,
+              child: RaisedButton(
+                onPressed: () {},
+                child: Text(
+                  'Start New Survey',
+                  style: Theme.of(context).textTheme.button,
+                ),
+              ),
             )
           ],
         ),
