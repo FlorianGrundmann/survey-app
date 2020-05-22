@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/values/survey_paths.dart';
+import '../bloc/survey_bloc.dart';
 
 class AdminMenuPage extends StatelessWidget {
   const AdminMenuPage({Key key}) : super(key: key);
@@ -30,9 +32,11 @@ class AdminMenuPage extends StatelessWidget {
               width: double.infinity,
               height: 70,
               child: RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
+                },
                 child: Text(
-                  'Start New Survey',
+                  'Fragebogen für neuen Patienten starten',
                   style: Theme.of(context).textTheme.button,
                 ),
               ),
