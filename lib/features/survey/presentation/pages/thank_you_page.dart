@@ -9,21 +9,35 @@ class ThankYouPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(50),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              ImagesPaths.smileyHealthProfessionals,
-              width: 320,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: 0.0,
+            right: 0.0,
+            child: new IconButton(
+                iconSize: 50.0,
+                icon: Image.asset(
+                  ImagesPaths.stetoscopeIcon,
+                ),
+                onPressed: () {}),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  ImagesPaths.smileyHealthProfessionals,
+                  width: 320,
+                ),
+                SizedBox(height: 30),
+                Text(
+                  'Vielen Dank!',
+                  style: Theme.of(context).textTheme.headline2,
+                )
+              ],
             ),
-            SizedBox(height: 30),
-            Text(
-              'Vielen Dank!',
-              style: Theme.of(context).textTheme.headline2,
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
