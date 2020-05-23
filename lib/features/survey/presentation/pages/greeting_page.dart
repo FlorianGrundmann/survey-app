@@ -16,7 +16,7 @@ class GreetingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            ImagesPaths.healthProfessionals,
+            ImagePaths.healthProfessionals,
             width: 320,
           ),
           SizedBox(

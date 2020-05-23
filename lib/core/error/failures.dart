@@ -10,5 +10,13 @@ class Success extends Equatable {
   List<Object> get props => [];
 }
 
-//General failures
-class LocalDataSourceFailure extends Failure {}
+///General local data source failure.
+///Use a more specific failure whenever possible.
+class LocalDataSourceFailure extends Failure {
+  final String message;
+
+  LocalDataSourceFailure([this.message]);
+
+  @override
+  List<Object> get props => [message];
+}

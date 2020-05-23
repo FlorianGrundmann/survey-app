@@ -17,7 +17,7 @@ class SurveyDataRepositoryImpl implements SurveyDataRepository {
     try {
       localDataSource.saveSurveyData();
       return Right(Success());
-    } on LocalDataBaseException {
+    } on LocalDataSourceException {
       return Left(LocalDataSourceFailure());
     }
   }

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'survey_styles.dart';
+part of 'survey_theme.dart';
 
 class SurveyTextStyles {
   static TextStyle regularTextStyle = TextStyle(
@@ -16,4 +14,6 @@ class SurveyTextStyles {
     fontSize: 24,
     color: SurveyColors.highlightColor,
   );
+
+  SurveyTextStyles._();
 }

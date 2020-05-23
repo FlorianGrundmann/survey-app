@@ -18,7 +18,7 @@ class ThankYouPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  ImagesPaths.smileyHealthProfessionals,
+                  ImagePaths.smileyHealthProfessionals,
                   width: 320,
                 ),
                 SizedBox(height: 30),

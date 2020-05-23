@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'survey_styles.dart';
+part 'survey_colors.dart';
+part 'survey_text_styles.dart';
 
 class SurveyTheme {
   static ThemeData surveyTheme = ThemeData(
     scaffoldBackgroundColor: SurveyColors.appBackgroundColor,
     primaryColor: SurveyColors.primaryColor,
+    accentColor: SurveyColors.secondaryColor,
+    highlightColor: SurveyColors.highlightColor,
     brightness: Brightness.light,
     buttonColor: SurveyColors.secondaryColor,
     disabledColor: SurveyColors.disabledColor,
-    accentColor: SurveyColors.secondaryColor,
-    highlightColor: SurveyColors.highlightColor,
     backgroundColor: SurveyColors.highlightColor,
     buttonTheme: ButtonThemeData(
       buttonColor: SurveyColors.secondaryColor,
@@ -25,4 +26,6 @@ class SurveyTheme {
       button: SurveyTextStyles.buttonTextStyle,
     ),
   );
+
+  SurveyTheme._();
 }

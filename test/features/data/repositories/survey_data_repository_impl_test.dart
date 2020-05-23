@@ -39,7 +39,8 @@ void main() {
 
     test('Returns Failure when exception happens.', () async {
       //arrange
-      when(mockDataSource.saveSurveyData()).thenThrow(LocalDataBaseException());
+      when(mockDataSource.saveSurveyData())
+          .thenThrow(LocalDataSourceException());
       //act
       final result = await repository.saveSurveyData(tsurveyElements);
       //assert

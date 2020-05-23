@@ -16,7 +16,7 @@ class AdminMenuPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              ImagesPaths.healthProIcon,
+              ImagePaths.healthProIcon,
               color: Theme.of(context).accentColor,
               width: 320,
             ),

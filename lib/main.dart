@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'core/values/styles/survey_styles.dart';
+import 'core/values/styles/survey_theme.dart';
 import 'features/survey/presentation/pages/survey_home.dart';
 import 'injection_container.dart' as di;
 
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: SurveyTheme.surveyTheme,
       home: Scaffold(
-        //body: AdminMenuPage(),
         body: SurveyHome(),
       ),
     );

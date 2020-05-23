@@ -55,7 +55,7 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   Stream<SurveyState> _mapRestartEvent() async* {
     _currentQuestion = null;
     questionStates = null;
-    yield GreetingState();
+    yield initialState;
   }
 
   Stream<SurveyState> _mapPreviosQuestionEvent() async* {
