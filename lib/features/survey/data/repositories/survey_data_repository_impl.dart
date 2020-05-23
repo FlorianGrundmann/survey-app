@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/survey_element.dart';
 import '../../domain/repositories/survey_data_repository.dart';
@@ -11,8 +12,13 @@ class SurveyDataRepositoryImpl implements SurveyDataRepository {
   SurveyDataRepositoryImpl({this.localDataSource});
 
   @override
-  Future<Either<Failure, Success>> saveSurveyData(List<SurveyElement> survey) {
-    localDataSource.saveSurveyData(); //dummy implementation
-    //TODO full implementation
+  Future<Either<Failure, Success>> saveSurveyData(
+      List<SurveyElement> survey) async {
+    try {
+      localDataSource.saveSurveyData();
+      return Right(Success());
+    } on LocalDataBaseException {
+      return Left(LocalDataSourceFailure());
+    }
   }
 }
