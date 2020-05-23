@@ -1,10 +1,7 @@
 part of 'survey_element.dart';
 
-class Answer extends Equatable {
+class Answer {
   int answerIndex;
 
   Answer([this.answerIndex]);
-
-  @override
-  List<Object> get props => [answerIndex];
 }
