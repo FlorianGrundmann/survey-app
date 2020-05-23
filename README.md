@@ -5,9 +5,9 @@ Created for a medical professional to use in the hospital.
 
 ## Screenshots
 
-[Greeting Page](/assets/screenshots/screenshot-1.png)
-[Question Page](/assets/screenshots/screenshot-2.png)
-[Thank You Page](/assets/screenshots/screenshot-3.png)
+[Greeting Page](/assets/screenshots/screenshot-1.PNG)
+[Question Page](/assets/screenshots/screenshot-2.PNG)
+[Thank You Page](/assets/screenshots/screenshot-3.PNG)
 
 
 ## Attribution
