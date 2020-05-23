@@ -31,8 +31,6 @@ class SavingState extends SurveyState {}
 
 class ThankYouState extends SurveyState {}
 
-class FailureState extends SurveyState {
-  //TODO Add failure message.
-}
+class FailureState extends SurveyState {}
 
 class AdminMenuState extends SurveyState {}

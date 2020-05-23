@@ -18,7 +18,7 @@ class SurveyHome extends StatelessWidget {
           if (state is GreetingState) {
             return GreetingPage();
           } else if (state is LoadingState) {
-            //TODO Loading Screen
+            //start loading screen
             return Container(
               child: Text('loading'),
             );
