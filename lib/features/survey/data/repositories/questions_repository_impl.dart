@@ -13,8 +13,6 @@ class QuestionsRepositoryImpl implements QuestionsRepository {
     @required this.localDataSource,
   });
 
-  ///Loads all questions from the given data source.
-  ///Returns [LocalDataSourceFailure] when an unknown exception happens during loading.
   @override
   Future<Either<Failure, List<SurveyElement>>> loadAllQuestions() async {
     try {

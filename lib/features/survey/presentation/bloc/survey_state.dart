@@ -13,9 +13,10 @@ class GreetingState extends SurveyState {}
 ///State in which the app is currently loading.
 class LoadingState extends SurveyState {}
 
-///State in which a question is shown to the user.
+///State of a question which is shown to the user.
 class QuestionState extends SurveyState {
   final SurveyElement surveyElement;
+  final ResponseOption response;
   final int questionIndex;
   final int numberTotalQuestions;
 
@@ -27,7 +28,16 @@ class QuestionState extends SurveyState {
     @required this.surveyElement,
     @required this.questionIndex,
     @required this.numberTotalQuestions,
+    this.response,
   });
+
+  QuestionState.responded({QuestionState oldState, ResponseOption response})
+      : this(
+          surveyElement: oldState.surveyElement,
+          questionIndex: oldState.questionIndex,
+          numberTotalQuestions: oldState.numberTotalQuestions,
+          response: response,
+        );
 }
 
 ///State in which the app is currently saving.

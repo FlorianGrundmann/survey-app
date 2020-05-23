@@ -3,18 +3,18 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../entities/survey_element.dart';
-import '../repositories/survey_data_repository.dart';
+import '../entities/survey_data.dart';
+import '../repositories/response_data_repository.dart';
 
-class SubmitSurveyUseCase extends UseCase<Success, List<SurveyElement>> {
-  final SurveyDataRepository repository;
+class SubmitResponseUseCase extends UseCase<Success, List<SurveyData>> {
+  final ResponseDataRepository repository;
 
-  SubmitSurveyUseCase({
+  SubmitResponseUseCase({
     @required this.repository,
   });
 
   @override
-  Future<Either<Failure, Success>> call(List<SurveyElement> survey) {
-    return repository.saveSurveyData(survey);
+  Future<Either<Failure, Success>> call(List<SurveyData> survey) {
+    return repository.saveResponse(survey);
   }
 }

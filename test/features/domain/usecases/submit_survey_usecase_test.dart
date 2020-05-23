@@ -3,11 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/core/usecases/usecase.dart';
+import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
 import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
-import 'package:survey_app/features/survey/domain/repositories/survey_data_repository.dart';
+import 'package:survey_app/features/survey/domain/repositories/response_data_repository.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 
-class MockSurveyDataRepository extends Mock implements SurveyDataRepository {}
+class MockSurveyDataRepository extends Mock implements ResponseDataRepository {}
 
 void main() {
   UseCase useCase;
@@ -15,24 +16,24 @@ void main() {
 
   setUp(() {
     mockRepository = MockSurveyDataRepository();
-    useCase = SubmitSurveyUseCase(repository: mockRepository);
+    useCase = SubmitResponseUseCase(repository: mockRepository);
   });
 
   final Either<Failure, Success> tRepositoryResult = Right(Success());
-  final List<SurveyElement> tAnswer = [
-    SurveyElement(
-      question: null,
-      answer: Answer(0),
+  final List<SurveyData> tResponse = [
+    SurveyData(
+      surveyElement: null,
+      userResponse: ResponseOption(0),
     ),
   ];
   test('Returns repository result', () async {
     //arrange
-    when(mockRepository.saveSurveyData(any))
+    when(mockRepository.saveResponse(any))
         .thenAnswer((_) async => tRepositoryResult);
     //act
-    final result = await useCase(tAnswer);
+    final result = await useCase(tResponse);
     //assert
-    verify(mockRepository.saveSurveyData(tAnswer)).called(1);
+    verify(mockRepository.saveResponse(tResponse)).called(1);
     verifyNoMoreInteractions(mockRepository);
     expect(result, tRepositoryResult);
   });

@@ -21,7 +21,7 @@ void main() {
   final Either<Failure, List<SurveyElement>> tRepositoryResult = Right([
     SurveyElement(
       question: Question('test Question'),
-      answer: Answer(),
+      responseOptions: [ResponseOption()],
     )
   ]);
 

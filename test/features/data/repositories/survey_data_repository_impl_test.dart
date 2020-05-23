@@ -5,7 +5,7 @@ import 'package:survey_app/core/error/exceptions.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/data/datasources/local_survey_data_source.dart';
 import 'package:survey_app/features/survey/data/repositories/survey_data_repository_impl.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
+import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
 
 class MockLocalSurveyDataSource extends Mock implements LocalSurveyDataSource {}
 
@@ -19,12 +19,12 @@ void main() {
   });
 
   group('saveSurveyData', () {
-    final List<SurveyElement> tsurveyElements = [];
+    final List<SurveyData> tsurveyElements = [];
 
     test('Calls saveSurveyData on local data source.', () async {
       //arrange
       //act
-      repository.saveSurveyData(tsurveyElements);
+      repository.saveResponse(tsurveyElements);
       //assert
       verify(mockDataSource.saveSurveyData());
     });
@@ -32,7 +32,7 @@ void main() {
     test('Returns Success when no exception happens.', () async {
       //arrange
       //act
-      final result = await repository.saveSurveyData(tsurveyElements);
+      final result = await repository.saveResponse(tsurveyElements);
       //assert
       expect(result, Right(Success()));
     });
@@ -42,7 +42,7 @@ void main() {
       when(mockDataSource.saveSurveyData())
           .thenThrow(LocalDataSourceException());
       //act
-      final result = await repository.saveSurveyData(tsurveyElements);
+      final result = await repository.saveResponse(tsurveyElements);
       //assert
       expect(result, Left(LocalDataSourceFailure()));
     });

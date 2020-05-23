@@ -8,7 +8,12 @@ import 'greeting_page.dart';
 import 'question_page.dart';
 import 'thank_you_page.dart';
 
-class SurveyHome extends StatelessWidget {
+class SurveyHome extends StatefulWidget {
+  @override
+  _SurveyHomeState createState() => _SurveyHomeState();
+}
+
+class _SurveyHomeState extends State<SurveyHome> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SurveyBloc>(
@@ -23,7 +28,8 @@ class SurveyHome extends StatelessWidget {
               child: Text('loading'),
             );
           } else if (state is QuestionState) {
-            return QuestionPage(
+            return new QuestionPage(
+              key: UniqueKey(),
               questionState: state,
             );
           } else if (state is ThankYouState) {

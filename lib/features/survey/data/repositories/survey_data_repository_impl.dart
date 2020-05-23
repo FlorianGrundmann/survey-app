@@ -2,18 +2,17 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
-import '../../domain/entities/survey_element.dart';
-import '../../domain/repositories/survey_data_repository.dart';
+import '../../domain/entities/survey_data.dart';
+import '../../domain/repositories/response_data_repository.dart';
 import '../datasources/local_survey_data_source.dart';
 
-class SurveyDataRepositoryImpl implements SurveyDataRepository {
+class SurveyDataRepositoryImpl implements ResponseDataRepository {
   final LocalSurveyDataSource localDataSource;
 
   SurveyDataRepositoryImpl({this.localDataSource});
 
   @override
-  Future<Either<Failure, Success>> saveSurveyData(
-      List<SurveyElement> survey) async {
+  Future<Either<Failure, Success>> saveResponse(List<SurveyData> survey) async {
     try {
       localDataSource.saveSurveyData();
       return Right(Success());

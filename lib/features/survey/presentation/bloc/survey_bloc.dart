@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
+import '../../domain/entities/survey_data.dart';
 import '../../domain/entities/survey_element.dart';
 import '../../domain/usecases/start_survey_usecase.dart';
 import '../../domain/usecases/submit_survey_usecase.dart';
@@ -19,11 +20,11 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   List<QuestionState> questionStates;
 
   final StartSurveyUseCase startSurveyUseCase;
-  final SubmitSurveyUseCase submitSurveyUseCase;
+  final SubmitResponseUseCase submitResponseUseCase;
 
   SurveyBloc({
     @required this.startSurveyUseCase,
-    @required this.submitSurveyUseCase,
+    @required this.submitResponseUseCase,
   });
 
   @override
@@ -36,7 +37,7 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
     if (event is StartSurveyEvent) {
       yield* _mapStartSurveyEvent();
     } else if (event is NextQuestionEvent) {
-      yield* _mapNextQuestionEvent();
+      yield* _mapNextQuestionEvent(event);
     } else if (event is SubmitAnswersEvent) {
       yield* _mapSubmitAnswerEvent();
     } else if (event is PreviousQuestionEvent) {
@@ -72,20 +73,32 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   Stream<SurveyState> _mapSubmitAnswerEvent() async* {
     yield LoadingState();
     if (questionStates != null) {
-      submitSurveyUseCase(questionStates.map((e) => e.surveyElement).toList());
+      submitResponseUseCase(questionStates
+          .map((questionState) => SurveyData(
+              surveyElement: questionState.surveyElement,
+              userResponse: questionState.response))
+          .toList());
       yield ThankYouState();
     } else {
       yield FailureState();
     }
   }
 
-  Stream<SurveyState> _mapNextQuestionEvent() async* {
+  Stream<SurveyState> _mapNextQuestionEvent(NextQuestionEvent event) async* {
     if (_currentQuestion == null || questionStates == null) {
       yield FailureState();
     } else {
+      _addResponseToCurrentState(event.response);
       _currentQuestion++;
       yield questionStates[_currentQuestion];
     }
+  }
+
+  void _addResponseToCurrentState(ResponseOption response) {
+    questionStates[_currentQuestion] = QuestionState.responded(
+      oldState: questionStates[_currentQuestion],
+      response: response,
+    );
   }
 
   Stream<SurveyState> _mapStartSurveyEvent() async* {

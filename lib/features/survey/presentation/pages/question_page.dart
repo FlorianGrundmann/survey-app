@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
 
 import '../bloc/survey_bloc.dart';
 import '../widgets/next_button.dart';
@@ -15,7 +16,8 @@ class QuestionPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _QuestionPageState createState() => _QuestionPageState();
+  _QuestionPageState createState() =>
+      _QuestionPageState(questionState.response);
 }
 
 class _QuestionPageState extends State<QuestionPage> {
@@ -23,14 +25,13 @@ class _QuestionPageState extends State<QuestionPage> {
   final double buttonHeight = 70;
   final double chevronSize = 40;
 
-  set _answerSelected(int value) {
-    widget.questionState.surveyElement.answer.answerIndex = value;
-  }
+  ResponseOption response;
 
-  int get _answerSelected =>
-      widget.questionState.surveyElement.answer.answerIndex;
+  int get _answerSelected => (response == null) ? null : response.answerIndex;
 
-  _QuestionPageState();
+  set _answerSelected(int value) => {response = ResponseOption(value)};
+
+  _QuestionPageState(this.response);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class _QuestionPageState extends State<QuestionPage> {
                             .add(SubmitAnswersEvent());
                       } else {
                         BlocProvider.of<SurveyBloc>(context)
-                            .add(NextQuestionEvent());
+                            .add(NextQuestionEvent(response));
                       }
                     },
                     text: _isLastQuestion() ? 'Absenden' : 'Weiter',

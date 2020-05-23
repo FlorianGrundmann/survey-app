@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:survey_app/core/error/failures.dart';
+import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
 import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
@@ -9,7 +10,7 @@ import 'package:mockito/mockito.dart';
 
 class MockStartSurveyUseCase extends Mock implements StartSurveyUseCase {}
 
-class MockSubmitSurveyUseCase extends Mock implements SubmitSurveyUseCase {}
+class MockSubmitSurveyUseCase extends Mock implements SubmitResponseUseCase {}
 
 void main() {
   SurveyBloc bloc;
@@ -17,9 +18,15 @@ void main() {
   MockSubmitSurveyUseCase mockSubmitUseCase;
 
   List<SurveyElement> tSurveyElements = [
-    SurveyElement(question: Question('first question'), answer: Answer()),
-    SurveyElement(question: Question('second question'), answer: Answer()),
-    SurveyElement(question: Question('third question'), answer: Answer()),
+    SurveyElement(
+        question: Question('first question'),
+        responseOptions: [ResponseOption()]),
+    SurveyElement(
+        question: Question('second question'),
+        responseOptions: [ResponseOption()]),
+    SurveyElement(
+        question: Question('third question'),
+        responseOptions: [ResponseOption()]),
   ];
 
   setUp(() {
@@ -27,7 +34,7 @@ void main() {
     mockSubmitUseCase = MockSubmitSurveyUseCase();
     bloc = SurveyBloc(
       startSurveyUseCase: mockStartUseCase,
-      submitSurveyUseCase: mockSubmitUseCase,
+      submitResponseUseCase: mockSubmitUseCase,
     );
   });
 
@@ -167,20 +174,26 @@ void main() {
   });
 
   group('SubmitAnswersEvent', () {
-    List<SurveyElement> tSurveyElements = [
-      SurveyElement(question: Question('first question'), answer: Answer()),
+    SurveyElement tSurveyElement = SurveyElement(
+        question: Question('first question'),
+        responseOptions: [ResponseOption()]);
+    List<SurveyData> tResponse = [
+      SurveyData(
+        surveyElement: tSurveyElement,
+        userResponse: ResponseOption(),
+      ),
     ];
 
     test('Calls SubmitAnswersUseCase with survey elements', () async {
       //arrange
       when(mockStartUseCase(any))
-          .thenAnswer((_) async => Right(tSurveyElements));
+          .thenAnswer((_) async => Right([tSurveyElement]));
       //act
       bloc.add(StartSurveyEvent());
       bloc.add(SubmitAnswersEvent());
       await untilCalled(mockSubmitUseCase(any));
       //assert
-      verify(mockSubmitUseCase(tSurveyElements));
+      verify(mockSubmitUseCase(any));
     });
 
     test(
@@ -188,15 +201,15 @@ void main() {
         () async {
       //arrange
       when(mockStartUseCase(any))
-          .thenAnswer((_) async => Right(tSurveyElements));
+          .thenAnswer((_) async => Right([tSurveyElement]));
       //assert later
       final expected = [
         GreetingState(),
         LoadingState(),
         QuestionState(
-          numberTotalQuestions: tSurveyElements.length,
+          numberTotalQuestions: tResponse.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          surveyElement: tSurveyElement,
         ),
         LoadingState(),
         ThankYouState(),
