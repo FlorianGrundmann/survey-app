@@ -13,11 +13,6 @@ class ThankYouPage extends StatelessWidget {
       padding: EdgeInsets.all(50),
       child: Stack(
         children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              BlocProvider.of<SurveyBloc>(context).add(OpenAdminMenuEvent());
-            },
-          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -33,6 +28,11 @@ class ThankYouPage extends StatelessWidget {
                 )
               ],
             ),
+          ),
+          GestureDetector(
+            onTap: () {
+              BlocProvider.of<SurveyBloc>(context).add(OpenAdminMenuEvent());
+            },
           ),
         ],
       ),
