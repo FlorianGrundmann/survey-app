@@ -269,6 +269,7 @@ void main() {
     test('Emits AdminMenuState after firering.', () async {
       //assert later
       final expected = [
+        GreetingState(),
         AdminMenuState(),
       ];
       expectLater(bloc, emitsInAnyOrder(expected));

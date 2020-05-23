@@ -16,7 +16,6 @@ part 'survey_state.dart';
 
 class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   int _currentQuestion;
-  //List<Question> questions;
   List<QuestionState> questionStates;
 
   final StartSurveyUseCase startSurveyUseCase;
@@ -30,61 +29,83 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   @override
   SurveyState get initialState => GreetingState();
 
-  //TODO Cleanup and refactor function
   @override
   Stream<SurveyState> mapEventToState(
     SurveyEvent event,
   ) async* {
     if (event is StartSurveyEvent) {
-      yield LoadingState();
-      Either<Failure, List<SurveyElement>> result =
-          await startSurveyUseCase(NoParams);
-      yield result.fold(
-        (failure) => FailureState(),
-        (surveyElements) {
-          _currentQuestion = 0;
-          questionStates = [];
-          for (int i = 0; i < surveyElements.length; i++) {
-            questionStates.add(QuestionState(
-              surveyElement: surveyElements[i],
-              numberTotalQuestions: surveyElements.length,
-              questionIndex: i,
-            ));
-          }
-          return questionStates[_currentQuestion];
-        },
-      );
+      yield* _mapStartSurveyEvent();
     } else if (event is NextQuestionEvent) {
+      yield* _mapNextQuestionEvent();
+    } else if (event is SubmitAnswersEvent) {
+      yield* _mapSubmitAnswerEvent();
+    } else if (event is PreviousQuestionEvent) {
+      yield* _mapPreviosQuestionEvent();
+    } else if (event is RestartEvent) {
+      yield* _mapRestartEvent();
+    } else if (event is OpenAdminMenuEvent) {
+      yield* _mapOpenAdminMenuEvent();
+    }
+  }
+
+  Stream<SurveyState> _mapOpenAdminMenuEvent() async* {
+    yield AdminMenuState();
+  }
+
+  Stream<SurveyState> _mapRestartEvent() async* {
+    _currentQuestion = null;
+    questionStates = null;
+    yield GreetingState();
+  }
+
+  Stream<SurveyState> _mapPreviosQuestionEvent() async* {
+    if (_currentQuestion > 0) {
       if (_currentQuestion == null || questionStates == null) {
         yield FailureState();
       } else {
-        _currentQuestion++;
+        _currentQuestion--;
         yield questionStates[_currentQuestion];
       }
-    } else if (event is SubmitAnswersEvent) {
-      yield LoadingState();
-      if (questionStates != null) {
-        submitSurveyUseCase(
-            questionStates.map((e) => e.surveyElement).toList());
-        yield ThankYouState();
-      } else {
-        yield FailureState();
-      }
-    } else if (event is PreviousQuestionEvent) {
-      if (_currentQuestion > 0) {
-        if (_currentQuestion == null || questionStates == null) {
-          yield FailureState();
-        } else {
-          _currentQuestion--;
-          yield questionStates[_currentQuestion];
-        }
-      }
-    } else if (event is RestartEvent) {
-      _currentQuestion = null;
-      questionStates = null;
-      yield GreetingState();
-    } else if (event is OpenAdminMenuEvent) {
-      yield AdminMenuState();
     }
+  }
+
+  Stream<SurveyState> _mapSubmitAnswerEvent() async* {
+    yield LoadingState();
+    if (questionStates != null) {
+      submitSurveyUseCase(questionStates.map((e) => e.surveyElement).toList());
+      yield ThankYouState();
+    } else {
+      yield FailureState();
+    }
+  }
+
+  Stream<SurveyState> _mapNextQuestionEvent() async* {
+    if (_currentQuestion == null || questionStates == null) {
+      yield FailureState();
+    } else {
+      _currentQuestion++;
+      yield questionStates[_currentQuestion];
+    }
+  }
+
+  Stream<SurveyState> _mapStartSurveyEvent() async* {
+    yield LoadingState();
+    Either<Failure, List<SurveyElement>> result =
+        await startSurveyUseCase(NoParams);
+    yield result.fold(
+      (failure) => FailureState(),
+      (surveyElements) {
+        _currentQuestion = 0;
+        questionStates = [];
+        for (int i = 0; i < surveyElements.length; i++) {
+          questionStates.add(QuestionState(
+            surveyElement: surveyElements[i],
+            numberTotalQuestions: surveyElements.length,
+            questionIndex: i,
+          ));
+        }
+        return questionStates[_currentQuestion];
+      },
+    );
   }
 }
