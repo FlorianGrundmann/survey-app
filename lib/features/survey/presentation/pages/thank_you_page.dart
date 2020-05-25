@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/values/survey_paths.dart';
+import '../fixed_values/survey_paths.dart';
 import '../bloc/survey_bloc.dart';
 
 class ThankYouPage extends StatelessWidget {
