@@ -68,7 +68,7 @@ void main() {
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          question: tSurveyElements[0],
         ),
       ];
       expectLater(bloc, emitsInOrder(expected));
@@ -107,12 +107,12 @@ void main() {
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          question: tSurveyElements[0],
         ),
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 1,
-          surveyElement: tSurveyElements[1],
+          question: tSurveyElements[1],
         ),
       ];
       expectLater(bloc, emitsInOrder(expected));
@@ -134,17 +134,17 @@ void main() {
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          question: tSurveyElements[0],
         ),
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 1,
-          surveyElement: tSurveyElements[1],
+          question: tSurveyElements[1],
         ),
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 2,
-          surveyElement: tSurveyElements[2],
+          question: tSurveyElements[2],
         ),
       ];
       expectLater(bloc, emitsInOrder(expected));
@@ -206,7 +206,7 @@ void main() {
         QuestionState(
           numberTotalQuestions: tResponse.length,
           questionIndex: 0,
-          surveyElement: tSurveyElement,
+          question: tSurveyElement,
         ),
         LoadingState(),
         ThankYouState(),
@@ -230,17 +230,17 @@ void main() {
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          question: tSurveyElements[0],
         ),
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 1,
-          surveyElement: tSurveyElements[1],
+          question: tSurveyElements[1],
         ),
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          question: tSurveyElements[0],
         ),
       ];
       expectLater(bloc, emitsInAnyOrder(expected));
@@ -263,7 +263,7 @@ void main() {
         QuestionState(
           numberTotalQuestions: tSurveyElements.length,
           questionIndex: 0,
-          surveyElement: tSurveyElements[0],
+          question: tSurveyElements[0],
         ),
         GreetingState(),
       ];

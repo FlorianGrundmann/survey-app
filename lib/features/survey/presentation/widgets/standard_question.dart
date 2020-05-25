@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'answer_radio_group.dart';
+import 'four_scale_button_group.dart';
+import '../../domain/entities/question.dart';
 
 class StandardQuestion extends StatelessWidget {
   final double paddingWidth = 50;
 
-  final questionText;
+  final Question question;
   final onAnswerSelected;
   final answerSelectedValue;
 
   const StandardQuestion({
     Key key,
-    @required this.questionText,
+    @required this.question,
     @required this.onAnswerSelected,
     @required this.answerSelectedValue,
   }) : super(key: key);
@@ -39,7 +40,7 @@ class StandardQuestion extends StatelessWidget {
       padding: EdgeInsets.all(paddingWidth),
       child: Container(
         child: Text(
-          questionText,
+          question.questionText,
           style: Theme.of(context).textTheme.headline1,
         ),
       ),
@@ -48,9 +49,10 @@ class StandardQuestion extends StatelessWidget {
 
   Widget _buildQuestionButtons() {
     return SizedBox.expand(
-      child: AnswerRadioGroup(
+      child: FourScaleButtonGroup(
         onChange: onAnswerSelected,
         answerSelected: answerSelectedValue,
+        responseOptions: question.responseOptions,
       ),
     );
   }

@@ -57,8 +57,7 @@ class _QuestionPageState extends State<QuestionPage> {
               child: Column(
                 children: <Widget>[
                   StandardQuestion(
-                    questionText:
-                        widget.questionState.surveyElement.questionText,
+                    question: widget.questionState.question,
                     answerSelectedValue: _answerSelected,
                     onAnswerSelected: (value) {
                       setState(() {

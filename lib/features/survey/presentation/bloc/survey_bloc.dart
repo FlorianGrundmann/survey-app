@@ -76,7 +76,7 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
     if (questionStates != null) {
       submitResponseUseCase(questionStates
           .map((questionState) => Response(
-              questionRespondedTo: questionState.surveyElement,
+              questionRespondedTo: questionState.question,
               selectedResponse: questionState.response))
           .toList());
       yield ThankYouState();
@@ -107,13 +107,13 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
     Either<Failure, List<Question>> result = await startSurveyUseCase(NoParams);
     yield result.fold(
       (failure) => FailureState(),
-      (surveyElements) {
+      (questions) {
         _currentQuestion = 0;
         questionStates = [];
-        for (int i = 0; i < surveyElements.length; i++) {
+        for (int i = 0; i < questions.length; i++) {
           questionStates.add(QuestionState(
-            surveyElement: surveyElements[i],
-            numberTotalQuestions: surveyElements.length,
+            question: questions[i],
+            numberTotalQuestions: questions.length,
             questionIndex: i,
           ));
         }

@@ -15,17 +15,16 @@ class LoadingState extends SurveyState {}
 
 ///State of a question which is shown to the user.
 class QuestionState extends SurveyState {
-  final Question surveyElement;
+  final Question question;
   final ResponseOption response;
   final int questionIndex;
   final int numberTotalQuestions;
 
   @override
-  List<Object> get props =>
-      [surveyElement, questionIndex, numberTotalQuestions];
+  List<Object> get props => [question, questionIndex, numberTotalQuestions];
 
   QuestionState({
-    @required this.surveyElement,
+    @required this.question,
     @required this.questionIndex,
     @required this.numberTotalQuestions,
     this.response,
@@ -33,7 +32,7 @@ class QuestionState extends SurveyState {
 
   QuestionState.responded({QuestionState oldState, ResponseOption response})
       : this(
-          surveyElement: oldState.surveyElement,
+          question: oldState.question,
           questionIndex: oldState.questionIndex,
           numberTotalQuestions: oldState.numberTotalQuestions,
           response: response,
