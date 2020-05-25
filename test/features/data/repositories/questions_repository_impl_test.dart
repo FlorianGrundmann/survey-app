@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/data/datasources/local_question_data_source.dart';
-import 'package:survey_app/features/survey/data/model/survey_element_model.dart';
+import 'package:survey_app/features/survey/data/model/rating_question_model.dart';
 import 'package:survey_app/features/survey/data/repositories/questions_repository_impl.dart';
 
 class MockLocalDataSource extends Mock implements LocalQuestionDataSource {}
@@ -17,8 +17,8 @@ void main() {
     repo = QuestionsRepositoryImpl(localDataSource: mockLocalDataSource);
   });
 
-  List<SurveyElementModel> tQuestions = [
-    SurveyElementModel('test question'),
+  List<RatingQuestionModel> tQuestions = [
+    RatingQuestionModel('test question'),
   ];
   test('Returns questions from local data source', () async {
     //arrange

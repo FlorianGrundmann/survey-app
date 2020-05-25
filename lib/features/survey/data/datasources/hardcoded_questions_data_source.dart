@@ -1,46 +1,46 @@
-import '../model/survey_element_model.dart';
+import '../model/rating_question_model.dart';
 import 'local_question_data_source.dart';
 
 ///Data source that returns data which is hardcoded.
 ///To change the data, the code of this class needs to be changed too.
 class HardCodedQuestionsDataSource implements LocalQuestionDataSource {
   @override
-  Future<List<SurveyElementModel>> loadAllQuestions() async {
+  Future<List<RatingQuestionModel>> loadAllQuestions() async {
     return [
-      SurveyElementModel(
+      RatingQuestionModel(
         'Der Ablauf der Anästhesie sollte besser erläutert werden.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
           'Es wurde zu wenig über die Risiken der bevorstehenden Anästhesie informiert.'),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Ich empfand das Video insgesamt als verständlich.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Das Video war insgesamt von guter Qualität.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Das Video war zu lang.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Die Bilder und Texte halfen mir den Information besser zu folgen.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Es war zu viel Text auf den Folien.',
       ),
-      SurveyElementModel('Die Stimme des Sprechers war angenehm.'),
-      SurveyElementModel(
+      RatingQuestionModel('Die Stimme des Sprechers war angenehm.'),
+      RatingQuestionModel(
         'Der Sprecher sprach zu schnell oder undeutlich.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Ich habe das Gefühl ernst genommen zu werden.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Ich wünsche mir mehr videounterstützte Aufklärung.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Wartezeiten konnten durch die videounterstützte Aufklärung sinnvoll genutzt werden.',
       ),
-      SurveyElementModel(
+      RatingQuestionModel(
         'Ich bin mit der videounterstützten Aufklärung zufrieden.',
       ),
     ];
