@@ -12,5 +12,5 @@ class ResponseOption<T> extends Equatable {
   }) : _displayText = displayText;
 
   @override
-  List<Object> get props => [value];
+  List<Object> get props => [value, _displayText];
 }
