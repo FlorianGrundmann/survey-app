@@ -27,10 +27,6 @@ class _QuestionPageState extends State<QuestionPage> {
 
   ResponseOption response;
 
-  int get _answerSelected => (response == null) ? null : response.value;
-
-  set _answerSelected(int value) => {response = ResponseOption(value)};
-
   _QuestionPageState(this.response);
 
   @override
@@ -58,15 +54,15 @@ class _QuestionPageState extends State<QuestionPage> {
                 children: <Widget>[
                   StandardQuestion(
                     question: widget.questionState.question,
-                    answerSelectedValue: _answerSelected,
+                    answerSelectedValue: response,
                     onAnswerSelected: (value) {
                       setState(() {
-                        _answerSelected = value;
+                        response = value;
                       });
                     },
                   ),
                   NextButton(
-                    activated: (_answerSelected != null),
+                    activated: (response != null),
                     onPressed: () {
                       if (_isLastQuestion()) {
                         BlocProvider.of<SurveyBloc>(context)

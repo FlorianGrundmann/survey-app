@@ -4,13 +4,8 @@ import 'package:survey_app/features/survey/domain/entities/response_option.dart'
 import 'custom_radio_button.dart';
 
 class FourScaleButtonGroup extends StatelessWidget {
-  final firstOptionText = 'Trifft nicht zu';
-  final secondOptionText = 'Trifft etwas zu';
-  final thirdOptionText = 'Trifft ziemlich zu';
-  final fourthOptionText = 'Trifft stark zu';
-
-  final Function(int) _onChange;
-  final int answerSelected;
+  final Function(ResponseOption) _onChange;
+  final ResponseOption answerSelected;
   final List<ResponseOption> responseOptions;
 
   const FourScaleButtonGroup({
@@ -32,9 +27,9 @@ class FourScaleButtonGroup extends StatelessWidget {
             CustomRadioButton(
                 text: responseOptions[i].displayText,
                 onPressed: () {
-                  _onChange(i);
+                  _onChange(responseOptions[i]);
                 },
-                activated: (answerSelected == i)),
+                activated: (answerSelected == responseOptions[i])),
         ],
       ),
     );

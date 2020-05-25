@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survey_app/features/survey/domain/entities/response_option.dart';
 
 import 'four_scale_button_group.dart';
 import '../../domain/entities/question.dart';
@@ -7,7 +8,7 @@ class StandardQuestion extends StatelessWidget {
   final double paddingWidth = 50;
 
   final Question question;
-  final onAnswerSelected;
+  final Function(ResponseOption) onAnswerSelected;
   final answerSelectedValue;
 
   const StandardQuestion({
