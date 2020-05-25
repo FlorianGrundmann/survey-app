@@ -22,7 +22,7 @@ void main() {
   final Either<Failure, List<Question>> tRepositoryResult = Right([
     Question(
       questionText: 'test Question',
-      responseOptions: [ResponseOption()],
+      responseOptions: [ResponseOption(0)],
     )
   ]);
 

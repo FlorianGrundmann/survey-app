@@ -20,11 +20,11 @@ void main() {
 
   List<Question> tSurveyElements = [
     Question(
-        questionText: 'first question', responseOptions: [ResponseOption()]),
+        questionText: 'first question', responseOptions: [ResponseOption(0)]),
     Question(
-        questionText: 'second question', responseOptions: [ResponseOption()]),
+        questionText: 'second question', responseOptions: [ResponseOption(0)]),
     Question(
-        questionText: 'third question', responseOptions: [ResponseOption()]),
+        questionText: 'third question', responseOptions: [ResponseOption(0)]),
   ];
 
   setUp(() {
@@ -173,11 +173,11 @@ void main() {
 
   group('SubmitAnswersEvent', () {
     Question tSurveyElement = Question(
-        questionText: 'first question', responseOptions: [ResponseOption()]);
+        questionText: 'first question', responseOptions: [ResponseOption(0)]);
     List<Response> tResponse = [
       Response(
         questionRespondedTo: tSurveyElement,
-        selectedResponse: ResponseOption(),
+        selectedResponse: ResponseOption(0),
       ),
     ];
 
