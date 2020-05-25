@@ -3,10 +3,10 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../entities/survey_data.dart';
+import '../entities/response.dart';
 import '../repositories/response_data_repository.dart';
 
-class SubmitResponseUseCase extends UseCase<Success, List<SurveyData>> {
+class SubmitResponseUseCase extends UseCase<Success, List<Response>> {
   final ResponseDataRepository repository;
 
   SubmitResponseUseCase({
@@ -14,7 +14,7 @@ class SubmitResponseUseCase extends UseCase<Success, List<SurveyData>> {
   });
 
   @override
-  Future<Either<Failure, Success>> call(List<SurveyData> survey) {
+  Future<Either<Failure, Success>> call(List<Response> survey) {
     return repository.saveResponse(survey);
   }
 }

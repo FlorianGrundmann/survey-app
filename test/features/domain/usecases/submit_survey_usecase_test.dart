@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/core/usecases/usecase.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
+import 'package:survey_app/features/survey/domain/entities/response_option.dart';
+import 'package:survey_app/features/survey/domain/entities/response.dart';
 import 'package:survey_app/features/survey/domain/repositories/response_data_repository.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 
@@ -20,10 +20,10 @@ void main() {
   });
 
   final Either<Failure, Success> tRepositoryResult = Right(Success());
-  final List<SurveyData> tResponse = [
-    SurveyData(
-      surveyElement: null,
-      userResponse: ResponseOption(0),
+  final List<Response> tResponse = [
+    Response(
+      questionRespondedTo: null,
+      selectedResponse: ResponseOption(0),
     ),
   ];
   test('Returns repository result', () async {

@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/core/usecases/usecase.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
+import 'package:survey_app/features/survey/domain/entities/question.dart';
+import 'package:survey_app/features/survey/domain/entities/response_option.dart';
 import 'package:survey_app/features/survey/domain/repositories/questions_repository.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 
@@ -18,9 +19,9 @@ void main() {
     usecase = StartSurveyUseCase(repository: mockRepository);
   });
 
-  final Either<Failure, List<SurveyElement>> tRepositoryResult = Right([
-    SurveyElement(
-      question: Question('test Question'),
+  final Either<Failure, List<Question>> tRepositoryResult = Right([
+    Question(
+      questionText: 'test Question',
       responseOptions: [ResponseOption()],
     )
   ]);

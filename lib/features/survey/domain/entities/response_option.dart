@@ -1,10 +1,10 @@
-part of 'survey_element.dart';
+import 'package:equatable/equatable.dart';
 
-class ResponseOption extends Equatable {
-  final int answerIndex;
+class ResponseOption<T> extends Equatable {
+  final T value;
 
-  ResponseOption([this.answerIndex]);
+  ResponseOption([this.value]);
 
   @override
-  List<Object> get props => [answerIndex];
+  List<Object> get props => [value];
 }

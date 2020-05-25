@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:survey_app/core/error/failures.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_element.dart';
+import 'package:survey_app/features/survey/domain/entities/response_option.dart';
+import 'package:survey_app/features/survey/domain/entities/response.dart';
+import 'package:survey_app/features/survey/domain/entities/question.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 import 'package:survey_app/features/survey/presentation/bloc/survey_bloc.dart';
@@ -17,16 +18,13 @@ void main() {
   MockStartSurveyUseCase mockStartUseCase;
   MockSubmitSurveyUseCase mockSubmitUseCase;
 
-  List<SurveyElement> tSurveyElements = [
-    SurveyElement(
-        question: Question('first question'),
-        responseOptions: [ResponseOption()]),
-    SurveyElement(
-        question: Question('second question'),
-        responseOptions: [ResponseOption()]),
-    SurveyElement(
-        question: Question('third question'),
-        responseOptions: [ResponseOption()]),
+  List<Question> tSurveyElements = [
+    Question(
+        questionText: 'first question', responseOptions: [ResponseOption()]),
+    Question(
+        questionText: 'second question', responseOptions: [ResponseOption()]),
+    Question(
+        questionText: 'third question', responseOptions: [ResponseOption()]),
   ];
 
   setUp(() {
@@ -174,13 +172,12 @@ void main() {
   });
 
   group('SubmitAnswersEvent', () {
-    SurveyElement tSurveyElement = SurveyElement(
-        question: Question('first question'),
-        responseOptions: [ResponseOption()]);
-    List<SurveyData> tResponse = [
-      SurveyData(
-        surveyElement: tSurveyElement,
-        userResponse: ResponseOption(),
+    Question tSurveyElement = Question(
+        questionText: 'first question', responseOptions: [ResponseOption()]);
+    List<Response> tResponse = [
+      Response(
+        questionRespondedTo: tSurveyElement,
+        selectedResponse: ResponseOption(),
       ),
     ];
 

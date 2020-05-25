@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
-import '../entities/survey_element.dart';
+import '../entities/question.dart';
 
 abstract class QuestionsRepository {
-  Future<Either<Failure, List<SurveyElement>>> loadAllQuestions();
+  Future<Either<Failure, List<Question>>> loadAllQuestions();
 }

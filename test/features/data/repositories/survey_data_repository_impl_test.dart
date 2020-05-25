@@ -5,7 +5,7 @@ import 'package:survey_app/core/error/exceptions.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/data/datasources/local_survey_data_source.dart';
 import 'package:survey_app/features/survey/data/repositories/survey_data_repository_impl.dart';
-import 'package:survey_app/features/survey/domain/entities/survey_data.dart';
+import 'package:survey_app/features/survey/domain/entities/response.dart';
 
 class MockLocalSurveyDataSource extends Mock implements LocalSurveyDataSource {}
 
@@ -19,7 +19,7 @@ void main() {
   });
 
   group('saveSurveyData', () {
-    final List<SurveyData> tsurveyElements = [];
+    final List<Response> tsurveyElements = [];
 
     test('Calls saveSurveyData on local data source.', () async {
       //arrange

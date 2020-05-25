@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/entities/survey_element.dart';
+import '../../domain/entities/response_option.dart';
 import '../bloc/survey_bloc.dart';
 import '../fixed_values/survey_sizes.dart';
 import '../widgets/next_button.dart';
@@ -27,7 +27,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
   ResponseOption response;
 
-  int get _answerSelected => (response == null) ? null : response.answerIndex;
+  int get _answerSelected => (response == null) ? null : response.value;
 
   set _answerSelected(int value) => {response = ResponseOption(value)};
 
@@ -58,7 +58,7 @@ class _QuestionPageState extends State<QuestionPage> {
                 children: <Widget>[
                   StandardQuestion(
                     questionText:
-                        widget.questionState.surveyElement.question.text,
+                        widget.questionState.surveyElement.questionText,
                     answerSelectedValue: _answerSelected,
                     onAnswerSelected: (value) {
                       setState(() {

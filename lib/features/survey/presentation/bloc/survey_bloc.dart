@@ -7,8 +7,9 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import '../../domain/entities/survey_data.dart';
-import '../../domain/entities/survey_element.dart';
+import '../../domain/entities/question.dart';
+import '../../domain/entities/response_option.dart';
+import '../../domain/entities/response.dart';
 import '../../domain/usecases/start_survey_usecase.dart';
 import '../../domain/usecases/submit_survey_usecase.dart';
 
@@ -74,9 +75,9 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
     yield LoadingState();
     if (questionStates != null) {
       submitResponseUseCase(questionStates
-          .map((questionState) => SurveyData(
-              surveyElement: questionState.surveyElement,
-              userResponse: questionState.response))
+          .map((questionState) => Response(
+              questionRespondedTo: questionState.surveyElement,
+              selectedResponse: questionState.response))
           .toList());
       yield ThankYouState();
     } else {
@@ -103,8 +104,7 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
 
   Stream<SurveyState> _mapStartSurveyEvent() async* {
     yield LoadingState();
-    Either<Failure, List<SurveyElement>> result =
-        await startSurveyUseCase(NoParams);
+    Either<Failure, List<Question>> result = await startSurveyUseCase(NoParams);
     yield result.fold(
       (failure) => FailureState(),
       (surveyElements) {

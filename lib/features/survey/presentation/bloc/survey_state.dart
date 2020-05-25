@@ -15,7 +15,7 @@ class LoadingState extends SurveyState {}
 
 ///State of a question which is shown to the user.
 class QuestionState extends SurveyState {
-  final SurveyElement surveyElement;
+  final Question surveyElement;
   final ResponseOption response;
   final int questionIndex;
   final int numberTotalQuestions;
