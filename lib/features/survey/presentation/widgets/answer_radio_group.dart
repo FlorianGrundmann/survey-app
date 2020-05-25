@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'custom_radio_button.dart';
 
 class AnswerRadioGroup extends StatelessWidget {
+  final firstOptionText = 'Trifft nicht zu';
+  final secondOptionText = 'Trifft etwas zu';
+  final thirdOptionText = 'Trifft ziemlich zu';
+  final fourthOptionText = 'Trifft stark zu';
+
   final Function(int) _onChange;
   final int answerSelected;
 
@@ -16,34 +21,33 @@ class AnswerRadioGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //color: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           CustomRadioButton(
-            text: 'Trifft nicht zu',
+            text: firstOptionText,
             onPressed: () {
               _onChange(0);
             },
             activated: (answerSelected == 0),
           ),
           CustomRadioButton(
-            text: 'Trifft etwas zu',
+            text: secondOptionText,
             onPressed: () {
               _onChange(1);
             },
             activated: (answerSelected == 1),
           ),
           CustomRadioButton(
-            text: 'Trifft ziemlich zu',
+            text: thirdOptionText,
             onPressed: () {
               _onChange(2);
             },
             activated: (answerSelected == 2),
           ),
           CustomRadioButton(
-            text: 'Trifft stark zu',
+            text: fourthOptionText,
             onPressed: () {
               _onChange(3);
             },

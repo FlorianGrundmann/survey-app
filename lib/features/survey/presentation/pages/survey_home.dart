@@ -14,6 +14,9 @@ class SurveyHome extends StatefulWidget {
 }
 
 class _SurveyHomeState extends State<SurveyHome> {
+  final unknownStateTitle = 'unknown state';
+  final loadingScreenTitle = 'loading';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SurveyBloc>(
@@ -25,7 +28,7 @@ class _SurveyHomeState extends State<SurveyHome> {
           } else if (state is LoadingState) {
             //start loading screen
             return Container(
-              child: Text('loading'),
+              child: Text(loadingScreenTitle),
             );
           } else if (state is QuestionState) {
             return new QuestionPage(
@@ -37,7 +40,7 @@ class _SurveyHomeState extends State<SurveyHome> {
           } else if (state is AdminMenuState) {
             return AdminMenuPage();
           } else {
-            return Container(child: Text('unknown state'));
+            return Container(child: Text(unknownStateTitle));
           }
         },
       ),

@@ -5,6 +5,8 @@ import '../../../../core/values/survey_paths.dart';
 import '../bloc/survey_bloc.dart';
 
 class ThankYouPage extends StatelessWidget {
+  final thankYouText = 'Vielen Dank!';
+
   const ThankYouPage({Key key}) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class ThankYouPage extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 Text(
-                  'Vielen Dank!',
+                  thankYouText,
                   style: Theme.of(context).textTheme.headline2,
                 )
               ],

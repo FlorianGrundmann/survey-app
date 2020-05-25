@@ -25,6 +25,9 @@ class _QuestionPageState extends State<QuestionPage> {
   final double buttonHeight = 70;
   final double chevronSize = 40;
 
+  var submitButtonText = 'Absenden';
+  var nextButtonText = 'Weiter';
+
   ResponseOption response;
 
   int get _answerSelected => (response == null) ? null : response.answerIndex;
@@ -77,7 +80,7 @@ class _QuestionPageState extends State<QuestionPage> {
                             .add(NextQuestionEvent(response));
                       }
                     },
-                    text: _isLastQuestion() ? 'Absenden' : 'Weiter',
+                    text: _isLastQuestion() ? submitButtonText : nextButtonText,
                   ),
                 ],
               ),

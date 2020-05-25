@@ -6,6 +6,11 @@ import '../../../../core/values/survey_paths.dart';
 import '../widgets/next_button.dart';
 
 class GreetingPage extends StatelessWidget {
+  final surveyTitle = 'Fragebogen zur Videoaufklärung';
+  final introductionText =
+      'Liebe Patientin, lieber Patient,\n\nbitte nutzen Sie Gelegenheit, um uns mit dem folgenden Fragebogen Ihre Eindrücke mitzuteilen. \n\nIhre Antworten werden streng anonym gespeichert und ausgewertet und haben keinerlei Auswirkungen auf Ihre individuelle medizinische Behandlung.\n\nVielen Dank im Voraus! \n\nIhr Ärzte-Team';
+  final startSurveyButtonText = 'Start';
+
   const GreetingPage({Key key}) : super(key: key);
 
   @override
@@ -23,15 +28,13 @@ class GreetingPage extends StatelessWidget {
             height: 30,
           ),
           Text(
-            'Fragebogen zur Videoaufklärung',
+            surveyTitle,
             style: Theme.of(context).textTheme.headline4,
           ),
           SizedBox(
             height: 30,
           ),
-          Text(
-              'Liebe Patientin, lieber Patient,\n\nbitte nutzen Sie Gelegenheit, um uns mit dem folgenden Fragebogen Ihre Eindrücke mitzuteilen. \n\nIhre Antworten werden streng anonym gespeichert und ausgewertet und haben keinerlei Auswirkungen auf Ihre individuelle medizinische Behandlung.\n\nVielen Dank im Voraus! \n\nIhr Ärzte-Team',
-              style: Theme.of(context).textTheme.headline6),
+          Text(introductionText, style: Theme.of(context).textTheme.headline6),
           SizedBox(
             height: 10,
           ),
@@ -40,7 +43,7 @@ class GreetingPage extends StatelessWidget {
             onPressed: () {
               BlocProvider.of<SurveyBloc>(context).add(StartSurveyEvent());
             },
-            text: 'Start',
+            text: startSurveyButtonText,
           ),
         ],
       ),

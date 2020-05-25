@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
+  final String seperatorText = 'von';
+
   final double paddingWidth;
   final double backButtonWidth;
 
@@ -60,7 +62,7 @@ class TopBar extends StatelessWidget {
             TextSpan(
                 text: '$currentQuestion',
                 style: TextStyle(fontWeight: FontWeight.bold)),
-            TextSpan(text: ' von $numberQuestions'),
+            TextSpan(text: ' $seperatorText $numberQuestions'),
           ],
         ),
       ),

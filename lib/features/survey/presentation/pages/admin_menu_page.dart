@@ -9,6 +9,9 @@ class AdminMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var titleAdminMenu = 'Admin Menu';
+    var newSurveyButtonText = 'Fragebogen für neuen Patienten starten';
+
     return Container(
       padding: EdgeInsets.all(50),
       child: Center(
@@ -22,7 +25,7 @@ class AdminMenuPage extends StatelessWidget {
             ),
             SizedBox(height: 30),
             Text(
-              'Admin Menu',
+              titleAdminMenu,
               style: Theme.of(context).textTheme.headline2,
             ),
             SizedBox(
@@ -36,7 +39,7 @@ class AdminMenuPage extends StatelessWidget {
                   BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
                 },
                 child: Text(
-                  'Fragebogen für neuen Patienten starten',
+                  newSurveyButtonText,
                   style: Theme.of(context).textTheme.button,
                 ),
               ),
