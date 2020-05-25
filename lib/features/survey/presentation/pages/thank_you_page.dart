@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../fixed_values/survey_paths.dart';
 import '../bloc/survey_bloc.dart';
+import '../fixed_values/survey_paths.dart';
+import '../fixed_values/survey_sizes.dart';
 
 class ThankYouPage extends StatelessWidget {
   final thankYouText = 'Vielen Dank!';
@@ -12,7 +13,7 @@ class ThankYouPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(50),
+      padding: EdgeInsets.all(SurveySizes.paddingSize),
       child: Stack(
         children: <Widget>[
           Center(
@@ -21,9 +22,9 @@ class ThankYouPage extends StatelessWidget {
               children: <Widget>[
                 Image.asset(
                   ImagePaths.smileyHealthProfessionals,
-                  width: 320,
+                  width: SurveySizes.imageWidth,
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: SurveySizes.standardDistance),
                 Text(
                   thankYouText,
                   style: Theme.of(context).textTheme.headline2,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:survey_app/features/survey/presentation/bloc/survey_bloc.dart';
+import 'package:survey_app/features/survey/presentation/fixed_values/survey_sizes.dart';
 
 import '../fixed_values/survey_paths.dart';
 import '../widgets/next_button.dart';
@@ -16,27 +17,27 @@ class GreetingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(50),
+      padding: EdgeInsets.all(SurveySizes.paddingSize),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset(
             ImagePaths.healthProfessionals,
-            width: 320,
+            width: SurveySizes.imageWidth,
           ),
           SizedBox(
-            height: 30,
+            height: SurveySizes.standardDistance,
           ),
           Text(
             surveyTitle,
             style: Theme.of(context).textTheme.headline4,
           ),
           SizedBox(
-            height: 30,
+            height: SurveySizes.standardDistance,
           ),
           Text(introductionText, style: Theme.of(context).textTheme.headline6),
           SizedBox(
-            height: 10,
+            height: SurveySizes.smallDistance,
           ),
           NextButton(
             activated: true,
