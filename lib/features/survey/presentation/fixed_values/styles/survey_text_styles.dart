@@ -2,16 +2,16 @@ part of 'survey_theme.dart';
 
 class SurveyTextStyles {
   static TextStyle regularTextStyle = TextStyle(
-    fontSize: 14.0,
+    fontSize: SurveySizes.regularFontSize,
   );
   static TextStyle questionTextStyle = TextStyle(
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
-    fontSize: 30.0,
+    fontSize: SurveySizes.questionFontSize,
     color: Colors.black,
   );
   static TextStyle buttonTextStyle = TextStyle(
-    fontSize: 24,
+    fontSize: SurveySizes.buttonFontSize,
     color: SurveyColors.highlightColor,
   );
 

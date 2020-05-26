@@ -22,12 +22,17 @@ class ThankYouPage extends StatelessWidget {
               children: <Widget>[
                 Image.asset(
                   ImagePaths.smileyHealthProfessionals,
-                  width: SurveySizes.imageWidth,
+                  width:
+                      SurveySizes.scaledWidth(SurveySizes.imageWidth, context),
                 ),
-                SizedBox(height: SurveySizes.standardDistance),
+                SizedBox(
+                    height: SurveySizes.scaledHeight(
+                        SurveySizes.standardDistance, context)),
                 Text(
                   thankYouText,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.headline2.copyWith(
+                      fontSize: SurveySizes.scaledWidth(
+                          SurveySizes.bigFontSize, context)),
                 )
               ],
             ),

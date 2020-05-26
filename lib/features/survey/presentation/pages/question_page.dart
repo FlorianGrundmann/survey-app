@@ -49,7 +49,8 @@ class _QuestionPageState extends State<QuestionPage> {
           ),
           Expanded(
             child: Container(
-              margin: EdgeInsets.all(SurveySizes.paddingSize),
+              margin: EdgeInsets.all(SurveySizes.scaledHeight(
+                  SurveySizes.standardDistance, context)),
               child: Column(
                 children: <Widget>[
                   StandardQuestion(

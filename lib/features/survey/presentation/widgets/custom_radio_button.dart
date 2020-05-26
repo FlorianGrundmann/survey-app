@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survey_app/features/survey/presentation/fixed_values/survey_sizes.dart';
 
 class CustomRadioButton extends StatelessWidget {
   final String text;
@@ -15,7 +16,7 @@ class CustomRadioButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 70,
+      height: SurveySizes.scaledHeight(SurveySizes.buttonSize, context),
       child: RaisedButton(
         color: Theme.of(context).primaryColor,
         disabledColor: Theme.of(context).primaryColor,
@@ -33,7 +34,8 @@ class CustomRadioButton extends StatelessWidget {
           text,
           style: TextStyle(
             color: activated ? Theme.of(context).accentColor : Colors.black,
-            fontSize: 18,
+            fontSize:
+                SurveySizes.scaledHeight(SurveySizes.buttonFontSize, context),
           ),
         ),
         onPressed: onPressed,

@@ -11,7 +11,7 @@ class AdminMenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var titleAdminMenu = 'Admin Menu';
-    var newSurveyButtonText = 'Fragebogen für neuen Patienten starten';
+    var newSurveyButtonText = 'Neuer Fragebogen';
 
     return Container(
       padding: EdgeInsets.all(SurveySizes.paddingSize),
@@ -19,25 +19,31 @@ class AdminMenuPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset(ImagePaths.healthProIcon,
-                color: Theme.of(context).accentColor,
-                width: SurveySizes.imageWidth),
+            Image.asset(
+              ImagePaths.healthProIcon,
+              color: Theme.of(context).accentColor,
+              width: SurveySizes.scaledWidth(SurveySizes.imageWidth, context),
+            ),
             SizedBox(height: SurveySizes.standardDistance),
             Text(
               titleAdminMenu,
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.headline2.copyWith(
+                  fontSize: SurveySizes.scaledWidth(
+                      SurveySizes.bigFontSize, context)),
             ),
             SizedBox(height: SurveySizes.standardDistance),
             SizedBox(
               width: double.infinity,
-              height: SurveySizes.buttonSize,
+              height: SurveySizes.scaledHeight(SurveySizes.buttonSize, context),
               child: RaisedButton(
                 onPressed: () {
                   BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
                 },
                 child: Text(
                   newSurveyButtonText,
-                  style: Theme.of(context).textTheme.button,
+                  style: Theme.of(context).textTheme.button.copyWith(
+                      fontSize: SurveySizes.scaledHeight(
+                          SurveySizes.buttonFontSize, context)),
                 ),
               ),
             )

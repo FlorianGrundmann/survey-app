@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survey_app/features/survey/presentation/fixed_values/survey_sizes.dart';
 
 class NextButton extends StatelessWidget {
   final bool activated;
@@ -17,24 +18,31 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: EdgeInsets.only(
+          top: SurveySizes.scaledHeight(SurveySizes.standardDistance, context)),
       child: SizedBox(
         width: double.infinity,
-        height: 70,
+        height: SurveySizes.scaledHeight(SurveySizes.buttonSize, context),
         child: RaisedButton(
           elevation: 0.0,
           child: Row(
             children: <Widget>[
-              SizedBox(width: chevronSize),
+              SizedBox(width: SurveySizes.scaledHeight(chevronSize, context)),
               Expanded(
                 child: Center(
                   child: Text(
                     text,
-                    style: Theme.of(context).textTheme.button,
+                    style: Theme.of(context).textTheme.button.copyWith(
+                          fontSize: SurveySizes.scaledHeight(
+                              SurveySizes.buttonFontSize, context),
+                        ),
                   ),
                 ),
               ),
-              Icon(Icons.chevron_right, size: chevronSize),
+              Icon(
+                Icons.chevron_right,
+                size: SurveySizes.scaledHeight(chevronSize, context),
+              ),
             ],
           ),
           onPressed: activated ? onPressed : null,

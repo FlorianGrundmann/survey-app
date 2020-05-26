@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:survey_app/features/survey/presentation/fixed_values/survey_sizes.dart';
 
 part 'survey_colors.dart';
 part 'survey_text_styles.dart';

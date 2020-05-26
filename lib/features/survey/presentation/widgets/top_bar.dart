@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../fixed_values/survey_sizes.dart';
 
 class TopBar extends StatelessWidget {
   final String seperatorText = 'von';
 
-  final double paddingWidth;
-  final double backButtonWidth;
+  final double paddingWidth = SurveySizes.paddingSize;
+  final double backButtonWidth = SurveySizes.paddingSize * 2;
 
   final int currentQuestion;
   final int numberQuestions;
@@ -13,12 +14,10 @@ class TopBar extends StatelessWidget {
 
   const TopBar({
     Key key,
-    this.paddingWidth = 50,
     @required this.currentQuestion,
     @required this.numberQuestions,
     @required this.onBackButtonTap,
-  })  : backButtonWidth = paddingWidth * 2,
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,7 @@ class TopBar extends StatelessWidget {
         onPressed: onBackButtonTap,
         child: Icon(
           Icons.chevron_left,
-          size: 40,
+          size: SurveySizes.buttonIconSize,
         ),
       ),
     );
@@ -57,7 +56,10 @@ class TopBar extends StatelessWidget {
     return Center(
       child: RichText(
         text: TextSpan(
-          style: Theme.of(context).primaryTextTheme.bodyText2,
+          style: Theme.of(context).primaryTextTheme.bodyText2.copyWith(
+                fontSize: SurveySizes.scaledWidth(
+                    SurveySizes.regularFontSize, context),
+              ),
           children: <TextSpan>[
             TextSpan(
                 text: '$currentQuestion',
