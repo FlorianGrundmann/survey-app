@@ -26,7 +26,7 @@ class TopBar extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              _buildBackButton(),
+              _buildBackButton(context),
               Expanded(
                 child: _buildCounter(context),
               ),
@@ -39,14 +39,14 @@ class TopBar extends StatelessWidget {
     );
   }
 
-  Widget _buildBackButton() {
+  Widget _buildBackButton(BuildContext context) {
     return SizedBox(
       width: backButtonWidth,
       child: FlatButton(
         onPressed: onBackButtonTap,
         child: Icon(
           Icons.chevron_left,
-          size: SurveySizes.buttonIconSize,
+          size: SurveySizes.scaledWidth(SurveySizes.buttonIconSize, context),
         ),
       ),
     );
