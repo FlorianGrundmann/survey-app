@@ -38,16 +38,13 @@ class StandardQuestion extends StatelessWidget {
   }
 
   Widget _buildQuestionText(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(paddingWidth),
-      child: Container(
-        child: Text(
-          question.questionText,
-          style: Theme.of(context).textTheme.headline1.copyWith(
-                fontSize: SurveySizes.scaledHeight(
-                    SurveySizes.questionFontSize, context),
-              ),
-        ),
+    return Center(
+      child: Text(
+        question.questionText,
+        style: Theme.of(context).textTheme.headline1.copyWith(
+              fontSize: SurveySizes.scaledHeight(
+                  SurveySizes.questionFontSize, context),
+            ),
       ),
     );
   }

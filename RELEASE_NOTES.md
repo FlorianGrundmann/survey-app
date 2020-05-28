@@ -1,15 +1,17 @@
 ## v.0.1.0 beta version
 
+For testing purposes only.
+
 ### New Features
 * Greeting page with introduction text.
 * Status bar which shows current question of total number of questions.
 * Single choice questions.
 * 'Thank you' page.
 * Taping on the screen on the 'thank you' page opens an admin menu.
-* Button to restart the survey an admin page.
+* Button to restart the survey in admin menu.
 
 ### Known Issues
-* After submitting the survey the data is not saved, but lost.
+* After submitting the survey, the data is not saved, but lost.
 * Everyone can enter the admin page and start a new survey.
 
 ### Features In Development
