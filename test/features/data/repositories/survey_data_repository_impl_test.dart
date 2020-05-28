@@ -26,7 +26,7 @@ void main() {
       //act
       repository.saveResponse(tsurveyElements);
       //assert
-      verify(mockDataSource.saveSurveyData());
+      verify(mockDataSource.saveSurveyData(tsurveyElements));
     });
 
     test('Returns Success when no exception happens.', () async {
@@ -39,7 +39,7 @@ void main() {
 
     test('Returns Failure when exception happens.', () async {
       //arrange
-      when(mockDataSource.saveSurveyData())
+      when(mockDataSource.saveSurveyData(any))
           .thenThrow(LocalDataSourceException());
       //act
       final result = await repository.saveResponse(tsurveyElements);

@@ -12,9 +12,10 @@ class SurveyDataRepositoryImpl implements ResponseDataRepository {
   SurveyDataRepositoryImpl({this.localDataSource});
 
   @override
-  Future<Either<Failure, Success>> saveResponse(List<Response> survey) async {
+  Future<Either<Failure, Success>> saveResponse(
+      List<Response> responses) async {
     try {
-      localDataSource.saveSurveyData();
+      localDataSource.saveSurveyData(responses);
       return Right(Success());
     } on LocalDataSourceException {
       return Left(LocalDataSourceFailure());
