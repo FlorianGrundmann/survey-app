@@ -1,11 +1,11 @@
 import '../../domain/entities/response_option.dart';
-import 'question_data.dart';
+import '../../domain/entities/question.dart';
 
-class RatingQuestion extends QuestionData {
+class RatingQuestion extends Question {
   RatingQuestion(String text, String id)
       : super(
           id: id,
-          text: text,
+          questionText: text,
           responseOptions: [
             ResponseOption(
               FourPointRatings.StrongNo,

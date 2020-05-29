@@ -1,4 +1,4 @@
-import '../model/rating_question.dart';
+import '../../domain/entities/rating_question.dart';
 
 ///Interface for a local data source where the survey questions are stored.
 abstract class LocalQuestionDataSource {

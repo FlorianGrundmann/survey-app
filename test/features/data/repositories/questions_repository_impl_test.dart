@@ -3,8 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/data/datasources/local_question_data_source.dart';
-import 'package:survey_app/features/survey/data/model/rating_question.dart';
 import 'package:survey_app/features/survey/data/repositories/questions_repository_impl.dart';
+import 'package:survey_app/features/survey/domain/entities/rating_question.dart';
 
 class MockLocalDataSource extends Mock implements LocalQuestionDataSource {}
 

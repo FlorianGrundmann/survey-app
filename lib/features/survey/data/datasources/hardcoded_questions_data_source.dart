@@ -1,4 +1,4 @@
-import '../model/rating_question.dart';
+import '../../domain/entities/rating_question.dart';
 import 'local_question_data_source.dart';
 
 ///Data source that returns data which is hardcoded.

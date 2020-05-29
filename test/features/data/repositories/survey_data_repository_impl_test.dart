@@ -4,29 +4,55 @@ import 'package:mockito/mockito.dart';
 import 'package:survey_app/core/error/exceptions.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/data/datasources/local_survey_data_source.dart';
+import 'package:survey_app/features/survey/data/model/response_data.dart';
+import 'package:survey_app/features/survey/data/repositories/response_mapper.dart';
 import 'package:survey_app/features/survey/data/repositories/survey_data_repository_impl.dart';
 import 'package:survey_app/features/survey/domain/entities/response.dart';
 
 class MockLocalSurveyDataSource extends Mock implements LocalSurveyDataSource {}
 
+class MockResponseMapper extends Mock implements ResponseMapper {}
+
 void main() {
+  MockResponseMapper mockMapper;
   MockLocalSurveyDataSource mockDataSource;
   SurveyDataRepositoryImpl repository;
 
   setUp(() {
+    mockMapper = MockResponseMapper();
     mockDataSource = MockLocalSurveyDataSource();
-    repository = SurveyDataRepositoryImpl(localDataSource: mockDataSource);
+    repository = SurveyDataRepositoryImpl(
+      localDataSource: mockDataSource,
+      mapper: mockMapper,
+    );
   });
 
   group('saveSurveyData', () {
-    final List<Response> tsurveyElements = [];
+    final Response tResponse = Response(
+      questionRespondedTo: null,
+      selectedResponse: null,
+    );
+    final List<Response> tsurveyElements = [
+      tResponse,
+    ];
+    final List<ResponseData> tResponseData = [];
 
-    test('Calls saveSurveyData on local data source.', () async {
+    test('Calls mapToResponseData on ResponseMapper', () async {
       //arrange
       //act
       repository.saveResponse(tsurveyElements);
       //assert
-      verify(mockDataSource.saveSurveyData(tsurveyElements));
+      verify(mockMapper.mapToResponseData(tsurveyElements));
+    });
+
+    test('Calls saveSurveyData on local data source.', () async {
+      //arrange
+      when(mockMapper.mapToResponseData(tsurveyElements))
+          .thenReturn(tResponseData);
+      //act
+      repository.saveResponse(tsurveyElements);
+      //assert
+      verify(mockDataSource.saveSurveyData(tResponseData));
     });
 
     test('Returns Success when no exception happens.', () async {

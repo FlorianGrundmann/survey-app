@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:survey_app/features/survey/data/repositories/response_mapper.dart';
 
 import 'features/survey/data/datasources/dummy_survey_data_source.dart';
 import 'features/survey/data/datasources/hardcoded_questions_data_source.dart';
@@ -32,11 +33,12 @@ Future<void> init() async {
   sl.registerLazySingleton<QuestionsRepository>(
       () => QuestionsRepositoryImpl(localDataSource: sl()));
   sl.registerLazySingleton<ResponseDataRepository>(
-      () => SurveyDataRepositoryImpl(localDataSource: sl()));
+      () => SurveyDataRepositoryImpl(localDataSource: sl(), mapper: sl()));
 
   //Data
   sl.registerLazySingleton<LocalQuestionDataSource>(
       () => HardCodedQuestionsDataSource());
   sl.registerLazySingleton<LocalSurveyDataSource>(
       () => DummySurveyDataSource());
+  sl.registerLazySingleton(() => ResponseMapper);
 }

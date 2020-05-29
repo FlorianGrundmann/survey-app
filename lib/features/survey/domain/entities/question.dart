@@ -8,12 +8,14 @@ import 'response_option.dart';
 class Question extends Equatable {
   final String questionText;
   final List<ResponseOption> responseOptions;
+  final String id;
 
   Question({
+    this.id,
     @required this.questionText,
     @required this.responseOptions,
   });
 
   @override
-  List<Object> get props => [questionText, responseOptions];
+  List<Object> get props => [questionText, responseOptions, id];
 }
