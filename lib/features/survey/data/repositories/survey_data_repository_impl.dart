@@ -27,6 +27,12 @@ class SurveyDataRepositoryImpl implements ResponseDataRepository {
       return Right(Success());
     } on LocalDataSourceException {
       return Left(LocalDataSourceFailure());
+    } on UnknownResponseOptionType {
+      return Left(MappingFailure());
+    } on MappingFailed {
+      return Left(MappingFailure());
+    } on Exception {
+      return Left(Failure());
     }
   }
 }

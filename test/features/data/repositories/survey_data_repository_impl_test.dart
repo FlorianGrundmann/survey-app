@@ -37,6 +37,15 @@ void main() {
     ];
     final List<ResponseData> tResponseData = [];
 
+    test('Returns failure when ResponseOption type is unknown.', () async {
+      //arrange
+      when(mockMapper.mapToResponseData(any))
+          .thenThrow(UnknownResponseOptionType());
+      //act
+      final result = await repository.saveResponse(tsurveyElements);
+      //assert
+      expect(result, Left(MappingFailure()));
+    });
     test('Calls mapToResponseData on ResponseMapper', () async {
       //arrange
       //act
