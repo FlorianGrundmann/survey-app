@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
@@ -74,10 +75,13 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   Stream<SurveyState> _mapSubmitAnswerEvent() async* {
     yield LoadingState();
     if (questionStates != null) {
+      String uuid = Uuid().v1();
       submitResponseUseCase(questionStates
           .map((questionState) => Response(
-              questionRespondedTo: questionState.question,
-              selectedResponse: questionState.response))
+                questionRespondedTo: questionState.question,
+                selectedResponse: questionState.response,
+                responderId: uuid,
+              ))
           .toList());
       yield ThankYouState();
     } else {

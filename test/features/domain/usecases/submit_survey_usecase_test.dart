@@ -24,6 +24,7 @@ void main() {
     Response(
       questionRespondedTo: null,
       selectedResponse: ResponseOption(0),
+      responderId: 'testResponderId',
     ),
   ];
   test('Returns repository result', () async {

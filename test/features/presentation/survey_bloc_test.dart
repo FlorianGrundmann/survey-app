@@ -178,6 +178,7 @@ void main() {
       Response(
         questionRespondedTo: tSurveyElement,
         selectedResponse: ResponseOption(0),
+        responderId: 'testResponderId',
       ),
     ];
 

@@ -13,6 +13,7 @@ class ResponseMapper {
       result.add(ResponseData(
         questionId: response.questionRespondedTo.id,
         responseId: uuid.v1(),
+        responderId: response.responderId,
         response: _mapResponseValue(response.selectedResponse.value),
       ));
     }
@@ -27,19 +28,19 @@ class ResponseMapper {
     }
   }
 
-  int _mapFourPointRating(FourPointRatings rating) {
+  String _mapFourPointRating(FourPointRatings rating) {
     switch (rating) {
       case FourPointRatings.StrongNo:
-        return 0;
+        return '0';
         break;
       case FourPointRatings.No:
-        return 1;
+        return '1';
         break;
       case FourPointRatings.Yes:
-        return 2;
+        return '2';
         break;
       case FourPointRatings.StrongYes:
-        return 3;
+        return '3';
         break;
       default:
         throw new UnknownResponseOptionType();

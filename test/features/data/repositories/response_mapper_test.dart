@@ -39,18 +39,22 @@ void main() {
       Response(
         questionRespondedTo: tQuestion,
         selectedResponse: tStrongNoOption,
+        responderId: 'testResponderId',
       ),
       Response(
         questionRespondedTo: tQuestion,
         selectedResponse: tNoOption,
+        responderId: 'testResponderId',
       ),
       Response(
         questionRespondedTo: tQuestion,
         selectedResponse: tYesOption,
+        responderId: 'testResponderId',
       ),
       Response(
         questionRespondedTo: tQuestion,
         selectedResponse: tStrongYesOption,
+        responderId: 'testResponderId',
       ),
     ];
     test('Result has same length as input parameter', () async {
@@ -87,10 +91,10 @@ void main() {
       //act
       List<ResponseData> result = mapper.mapToResponseData(tResponses);
       //assert
-      expect(result[0].response, 0);
-      expect(result[1].response, 1);
-      expect(result[2].response, 2);
-      expect(result[3].response, 3);
+      expect(result[0].response, '0');
+      expect(result[1].response, '1');
+      expect(result[2].response, '2');
+      expect(result[3].response, '3');
     });
   });
 
@@ -105,6 +109,7 @@ void main() {
       Response(
         questionRespondedTo: tQuestion,
         selectedResponse: ResponseOption(UnknownType()),
+        responderId: 'testResponderId',
       ),
     ];
 

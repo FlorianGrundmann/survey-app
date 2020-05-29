@@ -31,6 +31,7 @@ void main() {
     final Response tResponse = Response(
       questionRespondedTo: null,
       selectedResponse: null,
+      responderId: 'testResponderId',
     );
     final List<Response> tsurveyElements = [
       tResponse,
