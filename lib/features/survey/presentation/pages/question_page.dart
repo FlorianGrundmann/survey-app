@@ -67,7 +67,7 @@ class _QuestionPageState extends State<QuestionPage> {
                     onPressed: () {
                       if (_isLastQuestion()) {
                         BlocProvider.of<SurveyBloc>(context)
-                            .add(SubmitAnswersEvent());
+                            .add(SubmitAnswersEvent(response));
                       } else {
                         BlocProvider.of<SurveyBloc>(context)
                             .add(NextQuestionEvent(response));

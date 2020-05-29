@@ -38,18 +38,21 @@ class ScalingButton extends StatelessWidget {
       height:
           SurveySizes.scaledHeight(height ?? SurveySizes.buttonSize, context),
       child: RaisedButton(
-        color: color ?? Theme.of(context).primaryColor,
+        color: color ?? Theme.of(context).accentColor,
         disabledColor: disabledColor ?? Theme.of(context).primaryColor,
         elevation: 0.0,
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(18.0),
-          side: borderSide,
+          side: borderSide ??
+              BorderSide(
+                color: Theme.of(context).accentColor,
+              ),
         ),
         child: Text(
           text,
           style: TextStyle(
             color: activated
-                ? activatedTextColor ?? Theme.of(context).accentColor
+                ? activatedTextColor ?? Theme.of(context).highlightColor
                 : disabledTextColor ?? Colors.black,
             fontSize: SurveySizes.scaledHeight(
                 fontSize ?? SurveySizes.buttonFontSize, context),

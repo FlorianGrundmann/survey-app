@@ -11,7 +11,11 @@ abstract class SurveyEvent extends Equatable {
 class StartSurveyEvent extends SurveyEvent {}
 
 ///Event that should be fired when the user wants to submit his answers.
-class SubmitAnswersEvent extends SurveyEvent {}
+class SubmitAnswersEvent extends SurveyEvent {
+  final ResponseOption response;
+
+  SubmitAnswersEvent([this.response]);
+}
 
 ///Event that should be fired when the user wants to move to the next question.
 class NextQuestionEvent extends SurveyEvent {

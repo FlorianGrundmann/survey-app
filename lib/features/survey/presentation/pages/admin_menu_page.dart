@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/data/datasources/sqlite_data_source.dart';
+import 'package:survey_app/features/survey/data/model/response_data.dart';
+import 'package:survey_app/features/survey/presentation/widgets/scaling_button.dart';
 
 import '../bloc/survey_bloc.dart';
 import '../fixed_values/survey_paths.dart';
@@ -46,7 +49,20 @@ class AdminMenuPage extends StatelessWidget {
                           SurveySizes.buttonFontSize, context)),
                 ),
               ),
-            )
+            ),
+            SizedBox(height: SurveySizes.standardDistance),
+            ScalingButton(
+              text: 'Print DB',
+              onPressed: () async {
+                List<ResponseData> responses =
+                    await SqliteDataSource().loadAllResponses();
+                responses.forEach(
+                    (element) => print('question_id: ${element.questionId}, '
+                        'responder_id: ${element.responderId}, '
+                        'response: ${element.response}, '
+                        'response_id: ${element.responseId}, '));
+              },
+            ),
           ],
         ),
       ),
