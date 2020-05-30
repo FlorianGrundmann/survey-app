@@ -35,4 +35,10 @@ class SurveyDataRepositoryImpl implements ResponseDataRepository {
       return Left(Failure());
     }
   }
+
+  @override
+  Future<Either<Failure, Success>> exportAll() {
+    // TODO: implement exportAll
+    throw UnimplementedError();
+  }
 }
