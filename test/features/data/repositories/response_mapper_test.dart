@@ -121,4 +121,84 @@ void main() {
           throwsA(isA<UnknownResponseOptionType>()));
     });
   });
+
+  group('mapToCSV with empty data', () {
+    List<ResponseData> tResponseData = [];
+    test(
+        'Returns a string with semicollon seperated header when given empty list',
+        () async {
+      //arrange
+      //act
+      String result = mapper.mapToCsv(tResponseData);
+      //assert
+      expect(result, 'response_id; response; question_id; responder_id');
+    });
+  });
+
+  group('mapToCSV with one data entry', () {
+    String tQuestionId = '1111';
+    String tResponderId = '2222';
+    String tResponse = '0';
+    String tResponseId = '3333';
+    List<ResponseData> tResponseData = [
+      ResponseData(
+        questionId: tQuestionId,
+        responderId: tResponderId,
+        response: tResponse,
+        responseId: tResponseId,
+      )
+    ];
+    test(
+        'Returns a string with semicollon seperated header when given empty list',
+        () async {
+      //arrange
+      //act
+      String result = mapper.mapToCsv(tResponseData);
+      //assert
+      expect(
+        result,
+        'response_id; response; question_id; responder_id\n'
+        '$tResponseId; $tResponse; $tQuestionId; $tResponderId',
+      );
+    });
+  });
+
+  group('mapToCSV with two data entry', () {
+    String tQuestionId1 = '1111';
+    String tResponderId1 = '2222';
+    String tResponse1 = '0';
+    String tResponseId1 = '3333';
+    String tQuestionId2 = '1111';
+    String tResponderId2 = '4444';
+    String tResponse2 = '0';
+    String tResponseId2 = '5555';
+    List<ResponseData> tResponseData = [
+      ResponseData(
+        questionId: tQuestionId1,
+        responderId: tResponderId1,
+        response: tResponse1,
+        responseId: tResponseId1,
+      ),
+      ResponseData(
+        questionId: tQuestionId2,
+        responderId: tResponderId2,
+        response: tResponse2,
+        responseId: tResponseId2,
+      ),
+    ];
+    test(
+        'Returns a string with semicollon seperated header when given empty list',
+        () async {
+      //arrange
+      //act
+      String result = mapper.mapToCsv(tResponseData);
+      //assert
+      expect(
+        result,
+        'response_id; response; question_id; responder_id\n'
+        '$tResponseId1; $tResponse1; $tQuestionId1; $tResponderId1\n'
+        '$tResponseId2; $tResponse2; $tQuestionId2; $tResponderId2',
+      );
+    });
+  });
 }

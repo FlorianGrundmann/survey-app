@@ -20,6 +20,20 @@ class ResponseMapper {
     return result;
   }
 
+  String mapToCsv(List<ResponseData> responseData) {
+    String header = 'response_id; response; question_id; responder_id';
+    String entries = '';
+    for (int i = 0; i < responseData.length; i++) {
+      entries += '\n'
+          '${responseData[i].responseId}; '
+          '${responseData[i].response}; '
+          '${responseData[i].questionId}; '
+          '${responseData[i].responderId}';
+    }
+
+    return header + entries;
+  }
+
   _mapResponseValue(dynamic value) {
     if (value is FourPointRatings) {
       return _mapFourPointRating(value);
