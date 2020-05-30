@@ -1,19 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:survey_app/features/survey/data/model/response_data.dart';
-import 'package:survey_app/features/survey/data/repositories/response_mapper.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/response.dart';
 import '../../domain/repositories/response_data_repository.dart';
 import '../datasources/local_survey_data_source.dart';
+import '../model/response_data.dart';
+import 'response_mapper.dart';
 
-class SurveyDataRepositoryImpl implements ResponseDataRepository {
+class ResponsesRepositoryImpl implements ResponseDataRepository {
   final LocalSurveyDataSource localDataSource;
   final ResponseMapper mapper;
 
-  SurveyDataRepositoryImpl({
+  ResponsesRepositoryImpl({
     @required this.localDataSource,
     @required this.mapper,
   });

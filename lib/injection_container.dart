@@ -6,7 +6,7 @@ import 'features/survey/data/datasources/local_survey_data_source.dart';
 import 'features/survey/data/datasources/sqlite_data_source.dart';
 import 'features/survey/data/repositories/questions_repository_impl.dart';
 import 'features/survey/data/repositories/response_mapper.dart';
-import 'features/survey/data/repositories/survey_data_repository_impl.dart';
+import 'features/survey/data/repositories/responses_repository_impl.dart';
 import 'features/survey/domain/repositories/questions_repository.dart';
 import 'features/survey/domain/repositories/response_data_repository.dart';
 import 'features/survey/domain/usecases/start_survey_usecase.dart';
@@ -33,7 +33,7 @@ Future<void> init() async {
   sl.registerLazySingleton<QuestionsRepository>(
       () => QuestionsRepositoryImpl(localDataSource: sl()));
   sl.registerLazySingleton<ResponseDataRepository>(
-      () => SurveyDataRepositoryImpl(localDataSource: sl(), mapper: sl()));
+      () => ResponsesRepositoryImpl(localDataSource: sl(), mapper: sl()));
 
   //Data
   sl.registerLazySingleton<LocalQuestionDataSource>(

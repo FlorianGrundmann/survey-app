@@ -6,7 +6,7 @@ import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/data/datasources/local_survey_data_source.dart';
 import 'package:survey_app/features/survey/data/model/response_data.dart';
 import 'package:survey_app/features/survey/data/repositories/response_mapper.dart';
-import 'package:survey_app/features/survey/data/repositories/survey_data_repository_impl.dart';
+import 'package:survey_app/features/survey/data/repositories/responses_repository_impl.dart';
 import 'package:survey_app/features/survey/domain/entities/response.dart';
 
 class MockLocalSurveyDataSource extends Mock implements LocalSurveyDataSource {}
@@ -16,12 +16,12 @@ class MockResponseMapper extends Mock implements ResponseMapper {}
 void main() {
   MockResponseMapper mockMapper;
   MockLocalSurveyDataSource mockDataSource;
-  SurveyDataRepositoryImpl repository;
+  ResponsesRepositoryImpl repository;
 
   setUp(() {
     mockMapper = MockResponseMapper();
     mockDataSource = MockLocalSurveyDataSource();
-    repository = SurveyDataRepositoryImpl(
+    repository = ResponsesRepositoryImpl(
       localDataSource: mockDataSource,
       mapper: mockMapper,
     );
