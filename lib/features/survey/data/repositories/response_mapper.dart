@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:survey_app/core/error/exceptions.dart';
 import 'package:survey_app/features/survey/domain/entities/rating_question.dart';
 import 'package:uuid/uuid.dart';
@@ -20,7 +22,7 @@ class ResponseMapper {
     return result;
   }
 
-  String mapToCsv(List<ResponseData> responseData) {
+  Future<String> mapToCsv(List<ResponseData> responseData) async {
     String header = 'response_id; response; question_id; responder_id';
     String entries = '';
     for (int i = 0; i < responseData.length; i++) {
@@ -32,6 +34,10 @@ class ResponseMapper {
     }
 
     return header + entries;
+  }
+
+  Future<File> mapCsvToFile(String csvString, String filename) async {
+    return File(filename).writeAsString(csvString);
   }
 
   _mapResponseValue(dynamic value) {

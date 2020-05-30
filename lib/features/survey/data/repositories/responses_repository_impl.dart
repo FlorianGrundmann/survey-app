@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:survey_app/features/survey/data/datasources/file_data_source.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
@@ -11,10 +14,12 @@ import 'response_mapper.dart';
 
 class ResponsesRepositoryImpl implements ResponseDataRepository {
   final LocalSurveyDataSource localDataSource;
+  final FileDataSource fileDataSource;
   final ResponseMapper mapper;
 
   ResponsesRepositoryImpl({
     @required this.localDataSource,
+    @required this.fileDataSource,
     @required this.mapper,
   });
 
@@ -37,8 +42,11 @@ class ResponsesRepositoryImpl implements ResponseDataRepository {
   }
 
   @override
-  Future<Either<Failure, Success>> exportAll() {
-    // TODO: implement exportAll
-    throw UnimplementedError();
+  Future<Either<Failure, Success>> exportAll() async {
+    List<ResponseData> responses = await localDataSource.loadAllResponses();
+    String csvResponses = await mapper.mapToCsv(responses);
+    File csvFile = await mapper.mapCsvToFile(csvResponses, 'responses.csv');
+    fileDataSource.export(csvFile);
+    return Right(Success());
   }
 }

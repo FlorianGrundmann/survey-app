@@ -129,7 +129,7 @@ void main() {
         () async {
       //arrange
       //act
-      String result = mapper.mapToCsv(tResponseData);
+      String result = await mapper.mapToCsv(tResponseData);
       //assert
       expect(result, 'response_id; response; question_id; responder_id');
     });
@@ -153,7 +153,7 @@ void main() {
         () async {
       //arrange
       //act
-      String result = mapper.mapToCsv(tResponseData);
+      String result = await mapper.mapToCsv(tResponseData);
       //assert
       expect(
         result,
@@ -191,7 +191,7 @@ void main() {
         () async {
       //arrange
       //act
-      String result = mapper.mapToCsv(tResponseData);
+      String result = await mapper.mapToCsv(tResponseData);
       //assert
       expect(
         result,

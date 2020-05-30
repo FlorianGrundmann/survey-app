@@ -9,4 +9,9 @@ class DummySurveyDataSource implements LocalSurveyDataSource {
   Future<void> saveSurveyData(List<ResponseData> responses) async {
     //* Do nothing
   }
+
+  @override
+  Future<List<ResponseData>> loadAllResponses() {
+    return null;
+  }
 }
