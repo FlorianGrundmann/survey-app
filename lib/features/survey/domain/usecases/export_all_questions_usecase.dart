@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:survey_app/core/usecases/usecase.dart';
-import 'package:survey_app/features/survey/domain/repositories/response_data_repository.dart';
+import 'package:survey_app/features/survey/domain/repositories/questions_repository.dart';
 
-class ExportAllResponsesUseCase extends UseCase {
-  final ResponseDataRepository repository;
+class ExportAllQuestionsUseCase extends UseCase {
+  final QuestionsRepository repository;
 
-  ExportAllResponsesUseCase({
+  ExportAllQuestionsUseCase({
     @required this.repository,
   });
 

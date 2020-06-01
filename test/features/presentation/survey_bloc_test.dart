@@ -4,6 +4,7 @@ import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/domain/entities/response_option.dart';
 import 'package:survey_app/features/survey/domain/entities/response.dart';
 import 'package:survey_app/features/survey/domain/entities/question.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_questions_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/export_all_responses_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
@@ -15,13 +16,17 @@ class MockStartSurveyUseCase extends Mock implements StartSurveyUseCase {}
 class MockSubmitSurveyUseCase extends Mock implements SubmitResponseUseCase {}
 
 class MockExportAllResponsesUseCase extends Mock
-    implements ExportAllResponsesUsecase {}
+    implements ExportAllResponsesUseCase {}
+
+class MockExportAllQuestionsUseCase extends Mock
+    implements ExportAllQuestionsUseCase {}
 
 void main() {
   SurveyBloc bloc;
   MockStartSurveyUseCase mockStartUseCase;
   MockSubmitSurveyUseCase mockSubmitUseCase;
-  MockExportAllResponsesUseCase mockExportUseCase;
+  MockExportAllResponsesUseCase mockExportResponsesUseCase;
+  MockExportAllQuestionsUseCase mockExportQuestionsUseCase;
 
   List<Question> tSurveyElements = [
     Question(
@@ -35,11 +40,13 @@ void main() {
   setUp(() {
     mockStartUseCase = MockStartSurveyUseCase();
     mockSubmitUseCase = MockSubmitSurveyUseCase();
-    mockExportUseCase = MockExportAllResponsesUseCase();
+    mockExportResponsesUseCase = MockExportAllResponsesUseCase();
+    mockExportQuestionsUseCase = MockExportAllQuestionsUseCase();
     bloc = SurveyBloc(
       startSurveyUseCase: mockStartUseCase,
       submitResponseUseCase: mockSubmitUseCase,
-      exportResponsesUseCase: mockExportUseCase,
+      exportResponsesUseCase: mockExportResponsesUseCase,
+      exportQuestionsUseCase: mockExportQuestionsUseCase,
     );
   });
 
@@ -311,13 +318,37 @@ void main() {
       bloc.add(ExportResponsesEvent());
     });
 
-    test('Calls use case after firering.', () async {
+    test('Calls export responses use case when fired.', () async {
       //arrange
       //act
       bloc.add(ExportResponsesEvent());
-      await untilCalled(mockExportUseCase(any));
+      await untilCalled(mockExportResponsesUseCase(any));
       //assert
-      verify(mockExportUseCase.call(any));
+      verify(mockExportResponsesUseCase.call(any));
+    });
+  });
+
+  group('ExportQuestionsEvent', () {
+    test('Emits [..., Exporting, AdminMenuState] after firering.', () async {
+      //arrange
+      final expected = [
+        GreetingState(),
+        ExportingState(),
+        AdminMenuState(),
+      ];
+      //act
+      expectLater(bloc, emitsInAnyOrder(expected));
+      //assert
+      bloc.add(ExportQuestionsEvent());
+    });
+
+    test('Calls export questions use case when fired.', () async {
+      //arrange
+      //act
+      bloc.add(ExportQuestionsEvent());
+      await untilCalled(mockExportQuestionsUseCase(any));
+      //assert
+      verify(mockExportQuestionsUseCase.call(any));
     });
   });
 }

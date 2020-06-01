@@ -3,21 +3,21 @@ import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/core/usecases/usecase.dart';
-import 'package:survey_app/features/survey/domain/repositories/response_data_repository.dart';
-import 'package:survey_app/features/survey/domain/usecases/export_all_responses_usecase.dart';
+import 'package:survey_app/features/survey/domain/repositories/questions_repository.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_questions_usecase.dart';
 
-class MockDataRepository extends Mock implements ResponseDataRepository {}
+class MockDataRepository extends Mock implements QuestionsRepository {}
 
 void main() {
   MockDataRepository mockRepo;
-  ExportAllResponsesUseCase usecase;
+  ExportAllQuestionsUseCase usecase;
 
   setUp(() {
     mockRepo = MockDataRepository();
-    usecase = ExportAllResponsesUseCase(repository: mockRepo);
+    usecase = ExportAllQuestionsUseCase(repository: mockRepo);
   });
 
-  test('Calls ResponseDataRepository.exportAll when called', () async {
+  test('Calls QuestionDataRepository.exportAll when called', () async {
     //arrange
     //act
     usecase(NoParams());

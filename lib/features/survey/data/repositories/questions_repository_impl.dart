@@ -22,4 +22,10 @@ class QuestionsRepositoryImpl implements QuestionsRepository {
       return Left(LocalDataSourceFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Success>> exportAll() {
+    // TODO: implement exportAll
+    throw UnimplementedError();
+  }
 }

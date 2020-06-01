@@ -56,6 +56,14 @@ class AdminMenuPage extends StatelessWidget {
                     .add(ExportResponsesEvent());
               },
             ),
+            SizedBox(height: SurveySizes.standardDistance),
+            ScalingButton(
+              text: 'Exportiere Fragen.',
+              onPressed: () async {
+                BlocProvider.of<SurveyBloc>(context)
+                    .add(ExportQuestionsEvent());
+              },
+            ),
           ],
         ),
       ),

@@ -35,3 +35,5 @@ class RestartEvent extends SurveyEvent {}
 class OpenAdminMenuEvent extends SurveyEvent {}
 
 class ExportResponsesEvent extends SurveyEvent {}
+
+class ExportQuestionsEvent extends SurveyEvent {}
