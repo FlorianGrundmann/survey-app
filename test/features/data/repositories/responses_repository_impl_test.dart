@@ -119,7 +119,7 @@ void main() {
       verify(mockMapper.mapToCsv(tResponses));
     });
 
-    test('Calls mapper mapToFile', () async {
+    test('Calls export as file', () async {
       //arrange
       when(mockDataSource.loadAllResponses())
           .thenAnswer((realInvocation) async => tResponses);
@@ -128,19 +128,7 @@ void main() {
       //act
       await repository.exportAll();
       //assert
-      verify(mockMapper.mapCsvToFile(tString, any));
-    });
-
-    test('Calls export on file data source', () async {
-      //arrange
-      when(mockDataSource.loadAllResponses())
-          .thenAnswer((realInvocation) async => tResponses);
-      when(mockMapper.mapToCsv(any))
-          .thenAnswer((realInvocation) async => tString);
-      //act
-      await repository.exportAll();
-      //assert
-      verify(mockFileDataSource.export(any, any));
+      verify(mockFileDataSource.exportAsFile(tString, any));
     });
 
     test('Returns Success when no exception happens.', () async {

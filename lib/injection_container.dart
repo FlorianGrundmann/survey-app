@@ -5,6 +5,7 @@ import 'features/survey/data/datasources/hardcoded_questions_data_source.dart';
 import 'features/survey/data/datasources/local_question_data_source.dart';
 import 'features/survey/data/datasources/local_survey_data_source.dart';
 import 'features/survey/data/datasources/sqlite_data_source.dart';
+import 'features/survey/data/repositories/question_mapper.dart';
 import 'features/survey/data/repositories/questions_repository_impl.dart';
 import 'features/survey/data/repositories/response_mapper.dart';
 import 'features/survey/data/repositories/responses_repository_impl.dart';
@@ -38,15 +39,25 @@ Future<void> init() async {
 
   //Repositories
   sl.registerLazySingleton<QuestionsRepository>(
-      () => QuestionsRepositoryImpl(localDataSource: sl()));
-  sl.registerLazySingleton<ResponseDataRepository>(() =>
-      ResponsesRepositoryImpl(
-          localDataSource: sl(), mapper: sl(), fileDataSource: sl()));
+    () => QuestionsRepositoryImpl(
+      localDataSource: sl(),
+      mapper: sl(),
+      fileDataSource: sl(),
+    ),
+  );
+  sl.registerLazySingleton<ResponseDataRepository>(
+    () => ResponsesRepositoryImpl(
+      localDataSource: sl(),
+      mapper: sl(),
+      fileDataSource: sl(),
+    ),
+  );
 
   //Data
   sl.registerLazySingleton<LocalQuestionDataSource>(
       () => HardCodedQuestionsDataSource());
   sl.registerLazySingleton<LocalSurveyDataSource>(() => SqliteDataSource());
   sl.registerLazySingleton(() => ResponseMapper());
+  sl.registerLazySingleton(() => QuestionMapper());
   sl.registerLazySingleton(() => FileDataSource());
 }

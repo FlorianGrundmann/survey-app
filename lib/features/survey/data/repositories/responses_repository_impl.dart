@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:survey_app/features/survey/data/datasources/file_data_source.dart';
@@ -45,8 +43,7 @@ class ResponsesRepositoryImpl implements ResponseDataRepository {
   Future<Either<Failure, Success>> exportAll() async {
     List<ResponseData> responses = await localDataSource.loadAllResponses();
     String csvResponses = await mapper.mapToCsv(responses);
-    File csvFile = await mapper.mapCsvToFile(csvResponses, 'responses.csv');
-    fileDataSource.export(csvFile, 'responses.csv');
+    await fileDataSource.exportAsFile(csvResponses, 'responses.csv');
     return Right(Success());
   }
 }
