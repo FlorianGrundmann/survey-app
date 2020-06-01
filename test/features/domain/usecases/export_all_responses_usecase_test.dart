@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     mockRepo = MockDataRepository();
-    usecase = ExportAllResponsesUsecase(mockRepo);
+    usecase = ExportAllResponsesUsecase(repository: mockRepo);
   });
 
   test('Calls ResponseDataRepository.exportAll when called', () async {

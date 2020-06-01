@@ -4,6 +4,7 @@ import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/domain/entities/response_option.dart';
 import 'package:survey_app/features/survey/domain/entities/response.dart';
 import 'package:survey_app/features/survey/domain/entities/question.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_responses_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 import 'package:survey_app/features/survey/presentation/bloc/survey_bloc.dart';
@@ -13,10 +14,14 @@ class MockStartSurveyUseCase extends Mock implements StartSurveyUseCase {}
 
 class MockSubmitSurveyUseCase extends Mock implements SubmitResponseUseCase {}
 
+class MockExportAllResponsesUseCase extends Mock
+    implements ExportAllResponsesUsecase {}
+
 void main() {
   SurveyBloc bloc;
   MockStartSurveyUseCase mockStartUseCase;
   MockSubmitSurveyUseCase mockSubmitUseCase;
+  MockExportAllResponsesUseCase mockExportUseCase;
 
   List<Question> tSurveyElements = [
     Question(
@@ -30,9 +35,11 @@ void main() {
   setUp(() {
     mockStartUseCase = MockStartSurveyUseCase();
     mockSubmitUseCase = MockSubmitSurveyUseCase();
+    mockExportUseCase = MockExportAllResponsesUseCase();
     bloc = SurveyBloc(
       startSurveyUseCase: mockStartUseCase,
       submitResponseUseCase: mockSubmitUseCase,
+      exportResponsesUseCase: mockExportUseCase,
     );
   });
 
@@ -287,6 +294,30 @@ void main() {
 
       //act
       bloc.add(OpenAdminMenuEvent());
+    });
+  });
+
+  group('ExportResponsesEvent', () {
+    test('Emits [..., Exporting, AdminMenuState] after firering.', () async {
+      //arrange
+      final expected = [
+        GreetingState(),
+        ExportingState(),
+        AdminMenuState(),
+      ];
+      //act
+      expectLater(bloc, emitsInAnyOrder(expected));
+      //assert
+      bloc.add(ExportResponsesEvent());
+    });
+
+    test('Calls use case after firering.', () async {
+      //arrange
+      //act
+      bloc.add(ExportResponsesEvent());
+      await untilCalled(mockExportUseCase(any));
+      //assert
+      verify(mockExportUseCase.call(any));
     });
   });
 }

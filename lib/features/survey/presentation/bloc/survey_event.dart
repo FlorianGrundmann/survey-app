@@ -33,3 +33,5 @@ class RestartEvent extends SurveyEvent {}
 
 ///Event that should be fired when teh user wants to open the admin menu.
 class OpenAdminMenuEvent extends SurveyEvent {}
+
+class ExportResponsesEvent extends SurveyEvent {}

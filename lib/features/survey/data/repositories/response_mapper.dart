@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:path_provider/path_provider.dart';
 import 'package:survey_app/core/error/exceptions.dart';
 import 'package:survey_app/features/survey/domain/entities/rating_question.dart';
 import 'package:uuid/uuid.dart';
@@ -37,7 +38,8 @@ class ResponseMapper {
   }
 
   Future<File> mapCsvToFile(String csvString, String filename) async {
-    return File(filename).writeAsString(csvString);
+    Directory tempDirectory = await getTemporaryDirectory();
+    return File('${tempDirectory.path}/$filename').writeAsString(csvString);
   }
 
   _mapResponseValue(dynamic value) {

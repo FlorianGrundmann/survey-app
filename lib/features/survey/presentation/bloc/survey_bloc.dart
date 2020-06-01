@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_responses_usecase.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../core/error/failures.dart';
@@ -23,10 +24,12 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
 
   final StartSurveyUseCase startSurveyUseCase;
   final SubmitResponseUseCase submitResponseUseCase;
+  final ExportAllResponsesUsecase exportResponsesUseCase;
 
   SurveyBloc({
     @required this.startSurveyUseCase,
     @required this.submitResponseUseCase,
+    @required this.exportResponsesUseCase,
   });
 
   @override
@@ -48,7 +51,15 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
       yield* _mapRestartEvent();
     } else if (event is OpenAdminMenuEvent) {
       yield* _mapOpenAdminMenuEvent();
+    } else if (event is ExportResponsesEvent) {
+      yield* _mapExportResponsesEvent();
     }
+  }
+
+  Stream<SurveyState> _mapExportResponsesEvent() async* {
+    yield ExportingState();
+    exportResponsesUseCase(NoParams());
+    yield AdminMenuState();
   }
 
   Stream<SurveyState> _mapOpenAdminMenuEvent() async* {

@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:survey_app/features/survey/data/datasources/file_data_source.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_responses_usecase.dart';
 
 import 'features/survey/data/datasources/hardcoded_questions_data_source.dart';
 import 'features/survey/data/datasources/local_question_data_source.dart';
@@ -23,12 +24,14 @@ Future<void> init() async {
     () => SurveyBloc(
       startSurveyUseCase: sl(),
       submitResponseUseCase: sl(),
+      exportResponsesUseCase: sl(),
     ),
   );
 
   //Use cases
   sl.registerLazySingleton(() => StartSurveyUseCase(repository: sl()));
   sl.registerLazySingleton(() => SubmitResponseUseCase(repository: sl()));
+  sl.registerLazySingleton(() => ExportAllResponsesUsecase(repository: sl()));
 
   //Repositories
   sl.registerLazySingleton<QuestionsRepository>(

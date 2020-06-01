@@ -46,7 +46,7 @@ class ResponsesRepositoryImpl implements ResponseDataRepository {
     List<ResponseData> responses = await localDataSource.loadAllResponses();
     String csvResponses = await mapper.mapToCsv(responses);
     File csvFile = await mapper.mapCsvToFile(csvResponses, 'responses.csv');
-    fileDataSource.export(csvFile);
+    fileDataSource.export(csvFile, 'responses.csv');
     return Right(Success());
   }
 }
