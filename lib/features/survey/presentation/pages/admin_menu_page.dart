@@ -50,7 +50,7 @@ class AdminMenuPage extends StatelessWidget {
             ),
             SizedBox(height: SurveySizes.standardDistance),
             ScalingButton(
-              text: 'Print DB',
+              text: 'Exportiere Umfrageergebnisse.',
               onPressed: () async {
                 BlocProvider.of<SurveyBloc>(context)
                     .add(ExportResponsesEvent());
