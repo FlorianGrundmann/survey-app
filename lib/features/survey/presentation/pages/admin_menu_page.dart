@@ -50,7 +50,7 @@ class AdminMenuPage extends StatelessWidget {
             ),
             SizedBox(height: SurveySizes.standardDistance),
             ScalingButton(
-              text: 'Exportiere Umfrageergebnisse.',
+              text: 'Exportiere Ergebnisse',
               onPressed: () async {
                 BlocProvider.of<SurveyBloc>(context)
                     .add(ExportResponsesEvent());
@@ -58,7 +58,7 @@ class AdminMenuPage extends StatelessWidget {
             ),
             SizedBox(height: SurveySizes.standardDistance),
             ScalingButton(
-              text: 'Exportiere Fragen.',
+              text: 'Exportiere Fragen',
               onPressed: () async {
                 BlocProvider.of<SurveyBloc>(context)
                     .add(ExportQuestionsEvent());
