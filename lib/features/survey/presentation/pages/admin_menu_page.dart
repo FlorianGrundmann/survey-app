@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/presentation/widgets/scaling_button.dart';
 
 import '../bloc/survey_bloc.dart';
 import '../fixed_values/survey_paths.dart';
@@ -46,7 +47,23 @@ class AdminMenuPage extends StatelessWidget {
                           SurveySizes.buttonFontSize, context)),
                 ),
               ),
-            )
+            ),
+            SizedBox(height: SurveySizes.standardDistance),
+            ScalingButton(
+              text: 'Exportiere Ergebnisse',
+              onPressed: () async {
+                BlocProvider.of<SurveyBloc>(context)
+                    .add(ExportResponsesEvent());
+              },
+            ),
+            SizedBox(height: SurveySizes.standardDistance),
+            ScalingButton(
+              text: 'Exportiere Fragen',
+              onPressed: () async {
+                BlocProvider.of<SurveyBloc>(context)
+                    .add(ExportQuestionsEvent());
+              },
+            ),
           ],
         ),
       ),

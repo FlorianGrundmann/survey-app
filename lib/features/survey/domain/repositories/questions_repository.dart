@@ -5,4 +5,5 @@ import '../entities/question.dart';
 
 abstract class QuestionsRepository {
   Future<Either<Failure, List<Question>>> loadAllQuestions();
+  Future<Either<Failure, Success>> exportAll();
 }

@@ -4,6 +4,8 @@ import 'package:survey_app/core/error/failures.dart';
 import 'package:survey_app/features/survey/domain/entities/response_option.dart';
 import 'package:survey_app/features/survey/domain/entities/response.dart';
 import 'package:survey_app/features/survey/domain/entities/question.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_questions_usecase.dart';
+import 'package:survey_app/features/survey/domain/usecases/export_all_responses_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/start_survey_usecase.dart';
 import 'package:survey_app/features/survey/domain/usecases/submit_survey_usecase.dart';
 import 'package:survey_app/features/survey/presentation/bloc/survey_bloc.dart';
@@ -13,10 +15,18 @@ class MockStartSurveyUseCase extends Mock implements StartSurveyUseCase {}
 
 class MockSubmitSurveyUseCase extends Mock implements SubmitResponseUseCase {}
 
+class MockExportAllResponsesUseCase extends Mock
+    implements ExportAllResponsesUseCase {}
+
+class MockExportAllQuestionsUseCase extends Mock
+    implements ExportAllQuestionsUseCase {}
+
 void main() {
   SurveyBloc bloc;
   MockStartSurveyUseCase mockStartUseCase;
   MockSubmitSurveyUseCase mockSubmitUseCase;
+  MockExportAllResponsesUseCase mockExportResponsesUseCase;
+  MockExportAllQuestionsUseCase mockExportQuestionsUseCase;
 
   List<Question> tSurveyElements = [
     Question(
@@ -30,9 +40,13 @@ void main() {
   setUp(() {
     mockStartUseCase = MockStartSurveyUseCase();
     mockSubmitUseCase = MockSubmitSurveyUseCase();
+    mockExportResponsesUseCase = MockExportAllResponsesUseCase();
+    mockExportQuestionsUseCase = MockExportAllQuestionsUseCase();
     bloc = SurveyBloc(
       startSurveyUseCase: mockStartUseCase,
       submitResponseUseCase: mockSubmitUseCase,
+      exportResponsesUseCase: mockExportResponsesUseCase,
+      exportQuestionsUseCase: mockExportQuestionsUseCase,
     );
   });
 
@@ -178,6 +192,7 @@ void main() {
       Response(
         questionRespondedTo: tSurveyElement,
         selectedResponse: ResponseOption(0),
+        responderId: 'testResponderId',
       ),
     ];
 
@@ -286,6 +301,54 @@ void main() {
 
       //act
       bloc.add(OpenAdminMenuEvent());
+    });
+  });
+
+  group('ExportResponsesEvent', () {
+    test('Emits [..., Exporting, AdminMenuState] after firering.', () async {
+      //arrange
+      final expected = [
+        GreetingState(),
+        ExportingState(),
+        AdminMenuState(),
+      ];
+      //act
+      expectLater(bloc, emitsInAnyOrder(expected));
+      //assert
+      bloc.add(ExportResponsesEvent());
+    });
+
+    test('Calls export responses use case when fired.', () async {
+      //arrange
+      //act
+      bloc.add(ExportResponsesEvent());
+      await untilCalled(mockExportResponsesUseCase(any));
+      //assert
+      verify(mockExportResponsesUseCase.call(any));
+    });
+  });
+
+  group('ExportQuestionsEvent', () {
+    test('Emits [..., Exporting, AdminMenuState] after firering.', () async {
+      //arrange
+      final expected = [
+        GreetingState(),
+        ExportingState(),
+        AdminMenuState(),
+      ];
+      //act
+      expectLater(bloc, emitsInAnyOrder(expected));
+      //assert
+      bloc.add(ExportQuestionsEvent());
+    });
+
+    test('Calls export questions use case when fired.', () async {
+      //arrange
+      //act
+      bloc.add(ExportQuestionsEvent());
+      await untilCalled(mockExportQuestionsUseCase(any));
+      //assert
+      verify(mockExportQuestionsUseCase.call(any));
     });
   });
 }

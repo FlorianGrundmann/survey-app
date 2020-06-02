@@ -1,10 +1,10 @@
-import 'response_option.dart';
-
-import 'question.dart';
+import '../../domain/entities/response_option.dart';
+import '../../domain/entities/question.dart';
 
 class RatingQuestion extends Question {
-  RatingQuestion(text)
+  RatingQuestion(String text, String id)
       : super(
+          id: id,
           questionText: text,
           responseOptions: [
             ResponseOption(

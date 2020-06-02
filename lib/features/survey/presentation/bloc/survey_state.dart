@@ -42,6 +42,8 @@ class QuestionState extends SurveyState {
 ///State in which the app is currently saving.
 class SavingState extends SurveyState {}
 
+class ExportingState extends SurveyState {}
+
 ///State in which the user is thanked for participating in the survey.
 class ThankYouState extends SurveyState {}
 
