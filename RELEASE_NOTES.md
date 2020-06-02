@@ -1,3 +1,19 @@
+## v.0.2.0 beta version
+
+For testing purposes only.
+
+### New Features
+* Submited responses are now saved in a local database.
+* Responses and questions can be exported as csv files.
+
+### Known Issues
+* Everyone can enter the admin page.
+
+### Features In Development
+* Protect the admin page via password/pin.
+* Adding warning messages before taking important steps, like submitting
+  or aborting survey.
+
 ## v.0.1.0 beta version
 
 For testing purposes only.
