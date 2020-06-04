@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:survey_app/features/survey/presentation/widgets/survey_alert_dialog.dart';
 
 import '../../domain/entities/response_option.dart';
 import '../bloc/survey_bloc.dart';
@@ -43,7 +44,16 @@ class _QuestionPageState extends State<QuestionPage> {
                 BlocProvider.of<SurveyBloc>(context)
                     .add(PreviousQuestionEvent());
               } else {
-                BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SurveyAlertDialog(
+                      onOk: _restartSurvey,
+                      body: 'Alle ausgewählten Antworten gehen dabei verloren.',
+                      title: 'Zur Startseite zurückkehren?',
+                    );
+                  },
+                );
               }
             },
           ),
@@ -91,5 +101,9 @@ class _QuestionPageState extends State<QuestionPage> {
 
   bool _isFirstQuestion() {
     return (widget.questionState.questionIndex == 0);
+  }
+
+  void _restartSurvey() {
+    BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
   }
 }
