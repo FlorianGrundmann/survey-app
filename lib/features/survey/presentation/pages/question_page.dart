@@ -76,8 +76,17 @@ class _QuestionPageState extends State<QuestionPage> {
                     activated: (response != null),
                     onPressed: () {
                       if (_isLastQuestion()) {
-                        BlocProvider.of<SurveyBloc>(context)
-                            .add(SubmitAnswersEvent(response));
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return SurveyAlertDialog(
+                              onOk: _submitSurvey,
+                              title: 'Antworten absenden?',
+                              body:
+                                  'Alle antworten werden damit anonym gespeichert und können nicht mehr geändert werden.',
+                            );
+                          },
+                        );
                       } else {
                         BlocProvider.of<SurveyBloc>(context)
                             .add(NextQuestionEvent(response));
@@ -105,5 +114,9 @@ class _QuestionPageState extends State<QuestionPage> {
 
   void _restartSurvey() {
     BlocProvider.of<SurveyBloc>(context).add(RestartEvent());
+  }
+
+  void _submitSurvey() {
+    BlocProvider.of<SurveyBloc>(context).add(SubmitAnswersEvent(response));
   }
 }
