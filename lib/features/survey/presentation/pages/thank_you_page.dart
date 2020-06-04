@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/survey_bloc.dart';
 import '../fixed_values/survey_paths.dart';
 import '../fixed_values/survey_sizes.dart';
+import '../widgets/pin_pad.dart';
 
-class ThankYouPage extends StatelessWidget {
+class ThankYouPage extends StatefulWidget {
+  ThankYouPage({Key key}) : super(key: key);
+
+  @override
+  _ThankYouPageState createState() => _ThankYouPageState();
+}
+
+class _ThankYouPageState extends State<ThankYouPage> {
   final thankYouText = 'Vielen Dank!';
-
-  const ThankYouPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +43,20 @@ class ThankYouPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              BlocProvider.of<SurveyBloc>(context).add(OpenAdminMenuEvent());
+              _showLockScreen();
             },
           ),
         ],
+      ),
+    );
+  }
+
+  void _showLockScreen() {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (context, animation, secondaryAnimation) => PinPad(),
       ),
     );
   }
