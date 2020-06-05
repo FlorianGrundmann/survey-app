@@ -69,6 +69,8 @@ class _QuestionPageState extends State<QuestionPage> {
                     onAnswerSelected: (value) {
                       setState(() {
                         response = value;
+                        BlocProvider.of<SurveyBloc>(context)
+                            .add(ResponseSelectedEvent(response));
                       });
                     },
                   ),
@@ -89,7 +91,7 @@ class _QuestionPageState extends State<QuestionPage> {
                         );
                       } else {
                         BlocProvider.of<SurveyBloc>(context)
-                            .add(NextQuestionEvent(response));
+                            .add(NextQuestionEvent());
                       }
                     },
                     text: _isLastQuestion() ? submitButtonText : nextButtonText,
@@ -117,6 +119,6 @@ class _QuestionPageState extends State<QuestionPage> {
   }
 
   void _submitSurvey() {
-    BlocProvider.of<SurveyBloc>(context).add(SubmitAnswersEvent(response));
+    BlocProvider.of<SurveyBloc>(context).add(SubmitAnswersEvent());
   }
 }
