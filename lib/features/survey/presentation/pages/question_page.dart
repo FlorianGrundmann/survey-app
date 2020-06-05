@@ -33,7 +33,9 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: SurveySizes.paddingSize),
+      padding: EdgeInsets.only(
+        top: SurveySizes.scaledWidth(SurveySizes.paddingSize, context),
+      ),
       child: Column(
         children: <Widget>[
           TopBar(
