@@ -6,6 +6,7 @@ For testing purposes only.
 
 * Admin menu is now only accessible with a pin.
 * A Pop-up warnings is now showing before aborting or submitting the survey.
+* Fixed admin menu scaling error on phones.
 
 ## v.0.2.0 beta version
 
