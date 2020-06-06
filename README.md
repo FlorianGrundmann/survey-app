@@ -21,4 +21,4 @@ by Florian Grundmann
 * <a href="https://www.freepik.com/free-vector/health-professional-team-illustrated_7435025.htm">health-professionals</a>
 * <a href="https://www.freepik.com/free-vector/doctor-icon_764994.htm#page=1&query=icono%20medico&position=1">health-pro-icon</a>
 * <a href="https://www.freepik.com/free-vector/smiley-health-professional-team_7435026.htm#page=1&query=smiley%20health%20professional%20team&position=1">smiling-health-professional</a>
-* <a href="https://www.freepik.com/free-vector/patient-studying-medical-checkup-list_6974925.htm#page=2&query=doctors+cartoon&position=20">medical-checkup</a>
+* <a href="https://www.freepik.com/free-vector/online-doctor-concept_7850807.htm">phone-doctor</a>
