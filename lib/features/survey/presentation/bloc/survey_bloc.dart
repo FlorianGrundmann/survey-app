@@ -44,6 +44,8 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   ) async* {
     if (event is StartSurveyEvent) {
       yield* _mapStartSurveyEvent();
+    } else if (event is ResponseSelectedEvent) {
+      _addResponseToCurrentState(event.response);
     } else if (event is NextQuestionEvent) {
       yield* _mapNextQuestionEvent(event);
     } else if (event is SubmitAnswersEvent) {
@@ -97,7 +99,6 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
   Stream<SurveyState> _mapSubmitAnswerEvent(SubmitAnswersEvent event) async* {
     yield LoadingState();
     if (questionStates != null) {
-      _addResponseToCurrentState(event.response);
       String uuid = Uuid().v1();
       submitResponseUseCase(questionStates
           .map((questionState) => Response(
@@ -116,7 +117,6 @@ class SurveyBloc extends Bloc<SurveyEvent, SurveyState> {
     if (_currentQuestion == null || questionStates == null) {
       yield FailureState();
     } else {
-      _addResponseToCurrentState(event.response);
       _currentQuestion++;
       yield questionStates[_currentQuestion];
     }

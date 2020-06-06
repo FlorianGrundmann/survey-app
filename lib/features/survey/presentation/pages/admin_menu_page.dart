@@ -25,14 +25,18 @@ class AdminMenuPage extends StatelessWidget {
               color: Theme.of(context).accentColor,
               width: SurveySizes.scaledWidth(SurveySizes.imageWidth, context),
             ),
-            SizedBox(height: SurveySizes.standardDistance),
+            SizedBox(
+                height: SurveySizes.scaledWidth(
+                    SurveySizes.standardDistance, context)),
             Text(
               titleAdminMenu,
               style: Theme.of(context).textTheme.headline2.copyWith(
                   fontSize: SurveySizes.scaledWidth(
                       SurveySizes.bigFontSize, context)),
             ),
-            SizedBox(height: SurveySizes.standardDistance),
+            SizedBox(
+                height: SurveySizes.scaledWidth(
+                    SurveySizes.standardDistance, context)),
             SizedBox(
               width: double.infinity,
               height: SurveySizes.scaledHeight(SurveySizes.buttonSize, context),
@@ -48,7 +52,9 @@ class AdminMenuPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: SurveySizes.standardDistance),
+            SizedBox(
+                height: SurveySizes.scaledWidth(
+                    SurveySizes.standardDistance, context)),
             ScalingButton(
               text: 'Exportiere Ergebnisse',
               onPressed: () async {
@@ -56,7 +62,9 @@ class AdminMenuPage extends StatelessWidget {
                     .add(ExportResponsesEvent());
               },
             ),
-            SizedBox(height: SurveySizes.standardDistance),
+            SizedBox(
+                height: SurveySizes.scaledWidth(
+                    SurveySizes.standardDistance, context)),
             ScalingButton(
               text: 'Exportiere Fragen',
               onPressed: () async {

@@ -10,19 +10,17 @@ abstract class SurveyEvent extends Equatable {
 ///Event that should be fired when the user wants to start the survey.
 class StartSurveyEvent extends SurveyEvent {}
 
-///Event that should be fired when the user wants to submit his answers.
-class SubmitAnswersEvent extends SurveyEvent {
+class ResponseSelectedEvent extends SurveyEvent {
   final ResponseOption response;
 
-  SubmitAnswersEvent([this.response]);
+  ResponseSelectedEvent(this.response);
 }
+
+///Event that should be fired when the user wants to submit his answers.
+class SubmitAnswersEvent extends SurveyEvent {}
 
 ///Event that should be fired when the user wants to move to the next question.
-class NextQuestionEvent extends SurveyEvent {
-  final ResponseOption response;
-
-  NextQuestionEvent([this.response]);
-}
+class NextQuestionEvent extends SurveyEvent {}
 
 ///Event that should be fired when the user wants to move back to the previous question.
 class PreviousQuestionEvent extends SurveyEvent {}

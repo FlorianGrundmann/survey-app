@@ -43,7 +43,7 @@ class SqliteDataSource implements LocalSurveyDataSource {
     int oldVersion,
     int currentVersion,
   ) async {
-    await db.execute('DROP TABLE IF EXISTS questions; ');
+    await db.execute('DROP TABLE IF EXISTS responses;');
     return _onCreate(db, currentVersion);
   }
 
