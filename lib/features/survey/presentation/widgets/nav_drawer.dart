@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../fixed_values/survey_sizes.dart';
+import 'survey_alert_dialog.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -31,13 +32,29 @@ class NavDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.input),
               title: _text('Neue Umfrage'),
-              onTap: () => {Navigator.of(context).pop()},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SurveyAlertDialog(
+                      onOk: () {
+                        Navigator.of(context).pushReplacementNamed('/');
+                      },
+                      body:
+                          'Alle bisher ausgewählten Antworten gehen dabei verloren.',
+                      title: 'Zur Startseite zurückkehren?',
+                    );
+                  },
+                );
+              },
             ),
             Divider(),
             ListTile(
               leading: Icon(Icons.lock),
               title: _text('Exportiere Antworten'),
-              onTap: () => {Navigator.of(context).pop()},
+              onTap: () {
+                Navigator.of(context).pop();
+              },
             ),
             ListTile(
               leading: Icon(Icons.lock),
