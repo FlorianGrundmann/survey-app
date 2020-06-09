@@ -46,7 +46,7 @@ class NavDrawer extends StatelessWidget {
                         Navigator.of(context).pushReplacementNamed('/');
                       },
                       body:
-                          'Alle bisher ausgewählten Antworten gehen dabei verloren.',
+                          'Alle noch nicht abgeschickten Antworten gehen dabei verloren.',
                       title: 'Zur Startseite zurückkehren?',
                     );
                   },
