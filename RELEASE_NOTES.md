@@ -1,3 +1,12 @@
+## v.0.4.0 beta version
+
+For testing purposes only.
+
+### New Features
+
+* Added drawer menu which allows restart and exports.
+* Admin menu isn't accessible anymore, it's replaced by the drawer menu.
+
 ## v.0.3.0 beta version
 
 For testing purposes only.
