@@ -71,11 +71,11 @@ class NavDrawer extends StatelessWidget {
               },
             ),
             Divider(),
-            ListTile(
+            /*ListTile(
               leading: Icon(Icons.info),
               title: _text('Über App'),
               onTap: () => {Navigator.of(context).pop()},
-            ),
+            ),*/
           ],
         ),
       ),
