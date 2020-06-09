@@ -37,7 +37,7 @@ class _PinPadState extends State<PinPad> {
 
     return PasscodeScreen(
       title: Text(
-        'Enter App Passcode',
+        'Bitte Admin-Pin eingeben',
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,

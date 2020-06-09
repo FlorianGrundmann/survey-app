@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/usecases/usecase.dart';
+import '../../../../injection_container.dart';
+import '../../domain/usecases/export_all_questions_usecase.dart';
+import '../../domain/usecases/export_all_responses_usecase.dart';
 import '../fixed_values/survey_sizes.dart';
+import 'pin_pad.dart';
 import 'survey_alert_dialog.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -54,12 +59,16 @@ class NavDrawer extends StatelessWidget {
               title: _text('Exportiere Antworten'),
               onTap: () {
                 Navigator.of(context).pop();
+                _showLockScreen(context, _exportResponses);
               },
             ),
             ListTile(
               leading: Icon(Icons.lock),
               title: _text('Exportiere Fragen'),
-              onTap: () => {Navigator.of(context).pop()},
+              onTap: () {
+                Navigator.of(context).pop();
+                _showLockScreen(context, _exportQuestions);
+              },
             ),
             Divider(),
             ListTile(
@@ -68,6 +77,26 @@ class NavDrawer extends StatelessWidget {
               onTap: () => {Navigator.of(context).pop()},
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  void _exportResponses() {
+    sl<ExportAllResponsesUseCase>().call(NoParams);
+  }
+
+  void _exportQuestions() {
+    sl<ExportAllQuestionsUseCase>().call(NoParams);
+  }
+
+  void _showLockScreen(BuildContext context, Function onCorrect) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (context, animation, secondaryAnimation) => PinPad(
+          onCorrectPin: onCorrect,
         ),
       ),
     );
